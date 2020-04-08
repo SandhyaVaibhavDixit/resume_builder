@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.scss';
+import { Form } from './containers/Form';
 
 function App() {
   return (
-      <p>Resume form</p>
+      <Form />
   );
 }
 
