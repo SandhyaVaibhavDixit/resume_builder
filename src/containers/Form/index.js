@@ -43,7 +43,7 @@ export const Form = () => {
     };
 
     return(
-        <div className='form'>
+        <div className='mainForm'>
             { renderSections(sections) }   
         </div>
     );

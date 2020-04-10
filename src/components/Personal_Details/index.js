@@ -1,32 +1,61 @@
 import React, { useState } from 'react';
+import { Input } from '../../_shared/Input';
+import { DataStructure } from '../../_shared/FormStructure/PersonalDetails';
+import { CheckValidity } from '../../_utils/CheckValidity';
+
 import './style.scss';
 
 export const PersonalDetails = (props) => {
-    const [personalDetails, setPersonalDetails] = useState({
-        name: '',
-        location: '',
-        zipcode: '',
-        nantionality: '',
-        gender: '',
-        dateOfBirth: '',
-        email: '',
-        mobile: '',
-        permanentAddress: '',
-        localAddress: ''
-    });
+    
+    const [personalDetails, setPersonalDetails] = useState(DataStructure);
 
+    const inputChangedHandler = (e) => {
+        const {name, value} = e.target;
+
+       const updatedPersonalDetails = personalDetails.map( detail => {
+            if (detail.name === name){
+                detail.value = value;
+
+                detail.valid = CheckValidity(
+                    value,
+                    detail.validation
+                );
+
+                detail.touched= true
+            };
+
+            return detail;
+        });
+        
+        setPersonalDetails(updatedPersonalDetails);
+    }
+
+    const formElement = (
+        <div className='form'>
+          { personalDetails.map(eachDetail => (
+            <Input
+                key     ={eachDetail.name}
+                name           ={eachDetail.name}
+                label          ={eachDetail.label}
+                type           ={eachDetail.type}
+                config         ={eachDetail.config}
+                value          ={eachDetail.value}
+                invalid        ={!eachDetail.valid}
+                shouldValidate ={eachDetail.validation}
+                touched        ={eachDetail.touched}
+                changed ={e => inputChangedHandler(e)}
+            />            
+          ))}
+        </div>
+      );
+      
     return(
-        <div className='personalDetails'>
-            <div className='row'>
-                <div className='details column'> 
-                    <div className='row'>
-                    </div>
-                </div>
-                <div className='ProfilePhoto  column'>
-                    <div>
-                        <label>Profile Photo</label>
-                    </div>
-                </div>
+        <div className='personalDetails row'>
+            <div className='detailsDiv'>
+                {formElement}
+            </div>
+            <div className='profileImageDiv'>
+                ProfileImage
             </div>
         </div>
     );

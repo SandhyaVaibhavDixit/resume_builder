@@ -1,18 +1,25 @@
 .personalDetails {
-
-    width: 80%;
+    width: 100%;
     margin: auto;
-
-    .title {
-        border-bottom: 1px solid #eee;
+    
+    .form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
     }
 
-    .row {
-        display: flex;
+}
 
-        .column {
-            flex: 50%;
-            padding: 10px;
-        }
+.row {
+    display: flex;
+
+    .detailsDiv {
+        flex: 70%;
+        padding: 10px;
+    }
+
+    .profileImageDiv {
+        flex: 30%;
+        padding: 10px;
     }
 }
