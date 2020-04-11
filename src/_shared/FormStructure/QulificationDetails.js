@@ -13,7 +13,6 @@ export const DataStructure = [
               { value: 'doctrate', displayValue: 'Doctrate' }
             ]
           },
-          value: 'tenthLevel',
           validation: {},
           valid: true
     },
@@ -25,7 +24,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'University / Board'
         },
-        value: '',
         validation: {
           required: true
         }, 
@@ -40,7 +38,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'Year of pass e.g. 2020'
         },
-        value: '',
         validation: {
           required: true,
           minLength: 4,
@@ -62,7 +59,6 @@ export const DataStructure = [
               { value: 'distiction', displayValue: 'Distiction' },
             ]
           },
-          value: 'third',
           validation: {},
           valid: true
     },
@@ -74,7 +70,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'Name of the institute'
         },
-        value: '',
         validation: {
           required: true
         }, 
@@ -89,7 +84,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'Enter Subject'
         },
-        value: '',
         validation: {
           required: true
         }, 
@@ -104,7 +98,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'Percentage of Mark'
         },
-        value: '',
         validation: {
           required: true
         }, 

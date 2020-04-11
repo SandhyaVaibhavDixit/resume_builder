@@ -29,7 +29,7 @@ export const Input = ( props ) => {
                 name={name}
                 className={inputClasses.join(' ')}
                 {...config}
-                value={value}
+                value={value || " "}
                 onChange={changed} />;
             break;
         case ( 'select' ):
@@ -52,7 +52,7 @@ export const Input = ( props ) => {
                 name={name}
                 className={inputClasses.join(' ')}
                 {...config}
-                value={value}
+                value={value || " "}
                 onChange={changed} />;
     }
 
