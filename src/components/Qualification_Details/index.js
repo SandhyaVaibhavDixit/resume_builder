@@ -6,6 +6,7 @@ import { Table } from '../../_shared/Table';
 import { Button } from '../../_shared/Button';
 import { CheckValidity } from '../../_utils/CheckValidity'; 
 import { generateKey } from '../../_utils/generateKey';
+import { getInvalidField } from "../../_utils/getInvalidField";
 
 import './style.scss';
 
@@ -23,8 +24,8 @@ export const QualificationDetails = () => {
     const [ qualification, setQualification] = useState(initialdata);
     const [ qualificationList, setQualificationList] = useState([]);
     const [ showModal, setShowModal] = useState(false);
-    const [dataStructure, setDataStructure] = useState(DataStructure);
-    
+    const [ dataStructure, setDataStructure] = useState(DataStructure);
+    const [ hideAddButton, setHideAddButton] = useState(true);
     const onClick = () =>{
         setShowModal(true);
     }
@@ -48,6 +49,11 @@ export const QualificationDetails = () => {
                     value,
                     field.validation
                 );
+                
+                const invalidField = getInvalidField(dataStructure);
+                if(Boolean(invalidField) === false){
+                    setHideAddButton(false);
+                }
             }
             return field;
         });
@@ -105,7 +111,8 @@ export const QualificationDetails = () => {
             <div className='formBottom'>
                     <Button
                         onClick ={onAddHandler}
-                        title   ='Add'                
+                        title   ='Add' 
+                        hidden    ={hideAddButton}               
                     />
             </div>
         </div>
@@ -124,9 +131,9 @@ export const QualificationDetails = () => {
             />
 
             <Modal 
-                show= {showModal}
-                onClose= {toggleModal}
-                title= 'Add Educational Details'>
+                show    = {showModal}
+                onClose = {toggleModal}
+                title   = 'Add Educational Details'>
                     {formElement}
             </Modal>
 
