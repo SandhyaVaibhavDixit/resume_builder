@@ -14,8 +14,8 @@ export const PersonalDetails = (props) => {
 
        const updatedPersonalDetails = personalDetails.map( detail => {
             if (detail.name === name){
-                detail.value = value;
 
+                detail.value = value;
                 detail.valid = CheckValidity(
                     value,
                     detail.validation
@@ -34,15 +34,11 @@ export const PersonalDetails = (props) => {
         <div className='form'>
           { personalDetails.map(eachDetail => (
             <Input
-                key     ={eachDetail.name}
-                name           ={eachDetail.name}
-                label          ={eachDetail.label}
-                type           ={eachDetail.type}
-                config         ={eachDetail.config}
-                value          ={eachDetail.value}
-                invalid        ={!eachDetail.valid}
+                key            ={eachDetail.name}
+                details        ={eachDetail}       
+                value          ={eachDetail.value}     
                 shouldValidate ={eachDetail.validation}
-                touched        ={eachDetail.touched}
+                colClassName   ='col'
                 changed ={e => inputChangedHandler(e)}
             />            
           ))}
@@ -59,4 +55,4 @@ export const PersonalDetails = (props) => {
             </div>
         </div>
     );
-}
+}   

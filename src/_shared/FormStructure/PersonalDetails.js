@@ -82,12 +82,13 @@ export const DataStructure = [
         label: 'Date of Birth',
         type: 'input',
         config: {
-            type: 'text',
-            placeholder: 'dd / mm / yyyy'
+            type: 'date',
+            placeholder: 'mm / dd / yyyy'
         },
         value: '',
         validation: {
-          required: true
+          required: true,
+          isDate: true
         }, 
         valid: false,
         touched: false
@@ -131,8 +132,7 @@ export const DataStructure = [
         label: 'Permanent Address',
         type: 'textarea',
         config: {
-            type: 'text',
-            placeholder: 'Provice your Permanent Address'
+            placeholder: 'Provide your Permanent Address'
         },
         value: '',
         validation: {
@@ -146,7 +146,6 @@ export const DataStructure = [
         label: 'Local Address',
         type: 'textarea',
         config: {
-            type: 'text',
             placeholder: 'Provide your Local Address'
         },
         value: '',

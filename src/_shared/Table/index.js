@@ -48,7 +48,7 @@ export const Table = (props) => {
             <thead>
                 <tr>
                     { renderHeader }
-                    <th></th>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>

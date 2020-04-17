@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 
 export const Button = (props) => {
-    const { title, onClick, buttonClass, hidden} = props
+    const { title, onClick, buttonClass, childern, hidden} = props
 
     let classNames = ['button'];
     
@@ -13,6 +13,7 @@ export const Button = (props) => {
     return (
         <button hidden={hidden} className={classNames.join(' ')} onClick={onClick}>
             {title}
+            {childern}
         </button>
     );
 }

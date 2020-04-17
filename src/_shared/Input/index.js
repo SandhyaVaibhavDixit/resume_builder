@@ -3,11 +3,14 @@ import React from 'react';
 import './style.scss';
 
 export const Input = ( props ) => {
-    const {name, label, type, config, value, invalid, shouldValidate, touched, changed } = props;
+    const { colClassName, shouldValidate, changed, value} = props;
+    const { name, label, type, config, valid, touched} = props.details;
     let inputElement = null;
     const inputClasses = type === 'textarea' ? ['col inputElement textarea'] : ['col inputElement'];
+    console.log(props.details);
 
-    if (invalid && shouldValidate && touched) {
+    inputClasses.push(colClassName);
+    if ((!valid) && shouldValidate && touched) {
         inputClasses.push('invalid');
     }
 
@@ -29,8 +32,8 @@ export const Input = ( props ) => {
                 name={name}
                 className={inputClasses.join(' ')}
                 {...config}
-                value={value || " "}
-                onChange={changed} />;
+                value={value || ""}
+                onChange={changed}/>;
             break;
         case ( 'select' ):
             inputElement = <select

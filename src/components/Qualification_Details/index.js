@@ -11,7 +11,7 @@ import { getInvalidField } from "../../_utils/getInvalidField";
 import './style.scss';
 
 export const QualificationDetails = () => {
-    const initialdata = {
+    const initialData = {
         qualificationLevel: 'tenth',
         universityBoard: '',
         yearOfPass: 0,
@@ -21,11 +21,12 @@ export const QualificationDetails = () => {
         percentageOfMark: '',
     };
 
-    const [ qualification, setQualification] = useState(initialdata);
+    const [ qualification, setQualification] = useState(initialData);
     const [ qualificationList, setQualificationList] = useState([]);
     const [ showModal, setShowModal] = useState(false);
     const [ dataStructure, setDataStructure] = useState(DataStructure);
     const [ hideAddButton, setHideAddButton] = useState(true);
+    
     const onClick = () =>{
         setShowModal(true);
     }
@@ -80,7 +81,7 @@ export const QualificationDetails = () => {
 
         setQualificationList(updatedQualificationList)
         setDataStructure(dataStructure);
-        setQualification(initialdata);
+        setQualification(initialData);
         toggleModal();
     }
 
@@ -92,17 +93,13 @@ export const QualificationDetails = () => {
     const formElement = (
         <div>
             <div className='form'>
-            { dataStructure.map(eachData => (
+            { dataStructure.map(eachDetail => (
                 <Input
-                    key            ={eachData.name}
-                    name           ={eachData.name}
-                    label          ={eachData.label}
-                    type           ={eachData.type}
-                    config         ={eachData.config}
-                    value          ={qualification[eachData.name]}
-                    invalid        ={!eachData.valid}
-                    shouldValidate ={eachData.validation}
-                    touched        ={eachData.touched}
+                    key            ={eachDetail.name}
+                    details        ={eachDetail}
+                    value          ={qualification[eachDetail.name]}
+                    shouldValidate ={eachDetail.validation}
+                    colClassName   ='col'
                     changed        ={e => onChangeHandler(e)}
                 />            
             )
@@ -119,7 +116,7 @@ export const QualificationDetails = () => {
       );
 
     return (
-        <div className='dataContainer'>
+        <div className='quaContainer'>
             <Table
                 tableHeader = {dataStructure}
                 tableBody = { qualificationList }
