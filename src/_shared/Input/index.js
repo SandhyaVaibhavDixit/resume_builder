@@ -7,8 +7,7 @@ export const Input = ( props ) => {
     const { name, label, type, config, valid, touched} = props.details;
     let inputElement = null;
     const inputClasses = type === 'textarea' ? ['col inputElement textarea'] : ['col inputElement'];
-    console.log(props.details);
-
+    
     inputClasses.push(colClassName);
     if ((!valid) && shouldValidate && touched) {
         inputClasses.push('invalid');

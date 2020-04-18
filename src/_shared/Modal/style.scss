@@ -12,7 +12,7 @@
     position:           fixed;
     z-index:            500;
     background-color:   white;
-    width:              70%;
+    width:              auto;
     border:             1px solid #ccc;
     box-shadow:         1px 1px 1px black;
     padding:            16px;
@@ -51,8 +51,15 @@
 
 }
 
-@media (min-width: 600px) {
-  .modal {
+// @media (min-width: 600px) and (min-height: 400px) {
+//   .modal-wrapper {
+//       width: 700px;
+//       height: 400px;
+//   }
+// }
+
+@media (min-width: 200px) {
+  .modal-wrapper {
       width:      500px;
       left:       calc(50% - 250px);
   }
