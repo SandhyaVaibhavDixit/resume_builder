@@ -6,9 +6,7 @@ import { Form } from './containers/Form';
 
 
 ReactDOM.render(
-  // <React.StrictMode>
   <Form />,
-  // </React.StrictMode>
   document.getElementById('root')
 );
 
