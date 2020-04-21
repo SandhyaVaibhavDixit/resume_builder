@@ -26,7 +26,7 @@ export const Form = () => {
         },
         {
             title: 'Attach Documents',
-            subTitle: 'Attach all documents to prove the details you provided (Ex. copy of voter ID, Degree certificates, Document to prove work experience, etc',
+            subTitle: 'Attach all documents to prove the details you provided (Ex. copy of voter ID, Degree certificates, Document to prove work experience, etc)',
             component: <AttachDocumentDetails/>
         }
     ];
