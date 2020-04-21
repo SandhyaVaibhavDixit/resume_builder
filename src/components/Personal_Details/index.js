@@ -34,7 +34,7 @@ export const PersonalDetails = () => {
         updatePersonaldetails(name, value);
     }
 
-    const getFormElement = () => (
+    const renderForm = (
         <div className='form'>
           { personalDetails.map(eachDetail => {
                 return (<Input
@@ -53,7 +53,7 @@ export const PersonalDetails = () => {
     return(
         <div className='personalDetails row'>
             <div className='detailsDiv'>
-                {getFormElement()}
+                { renderForm }
             </div>
             <div className='profileImageDiv'>
                 <ProfileImage />

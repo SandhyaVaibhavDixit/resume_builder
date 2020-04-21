@@ -114,7 +114,7 @@ export const AttachDocumentDetails = () =>{
         window.open(url, "_blank");
     }
 
-    const getFormElement = () => (
+    const renderForm = (
         <Fragment>
             <div className='form'>
                 <div className='fileUpload'>
@@ -177,8 +177,7 @@ export const AttachDocumentDetails = () =>{
                 onClose = {toggleModal}
                 title   = 'Add files'>
 
-                    {getFormElement()}
-
+                    {renderForm}
             </Modal>
         </div>
     );

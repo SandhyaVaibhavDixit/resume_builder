@@ -41,7 +41,10 @@ export const ProfileImage = () => {
     }
 
     const renderProfileImage = () => {
-        const profileImage = imageData.userProfileImg ? imageData.userProfileImg : defaultImage;
+        const profileImage = imageData.userProfileImg ? 
+                                imageData.userProfileImg : 
+                                defaultImage;
+
         return(
             <img className='profile-image' src={profileImage} alt='user-logo' />
         )
@@ -54,18 +57,18 @@ export const ProfileImage = () => {
             <label className='labelUpload' title="Select image">  
                 <input 
                     hidden
-                    type    ='file'
-                    name    = 'profileImg'
-                    accept  ='image/png, image/jpeg, image/jpg'
+                    type     ='file'
+                    name     ='profileImg'
+                    accept   ='image/png, image/jpeg, image/jpg'
                     onChange ={onImageFileChangeHandler}
                 />
                 Select image
             </label>
             
             <Modal 
-                show    = {showModal}
-                onClose = {toggleModal}
-                title   = 'Crop'>
+                show    ={showModal}
+                onClose ={toggleModal}
+                title   ='Crop'>
 
                 <ImageCrop 
                     imagefile     ={imageData.selectedFile} 

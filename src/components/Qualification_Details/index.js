@@ -90,7 +90,7 @@ export const QualificationDetails = () => {
         updateState({ qualificationList: updatedQualificationList});
     }
 
-    const getformElement = () => (
+    const renderForm = (
             <Form 
                 dataStructure = {state.dataStructure} 
                 data ={state.qualification}
@@ -116,7 +116,7 @@ export const QualificationDetails = () => {
                 show    ={state.showModal}
                 onClose ={toggleModal}
                 title   ='Add Educational Details'>
-                    {getformElement()}
+                    { renderForm }
             </Modal>
 
         </div>

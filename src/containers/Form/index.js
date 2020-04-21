@@ -31,8 +31,7 @@ export const Form = () => {
         }
     ];
 
-    const renderSections = () =>{
-        return (
+    const renderSections = (
             sections.map( eachSection => {
                 return (
                     <Section 
@@ -44,13 +43,12 @@ export const Form = () => {
                     </Section>
                 )
             })
-        )
-    };
+    );
 
     return(
         <div className='mainForm'>
             <h2>Candidate Details Form</h2>
-            { renderSections() }   
+            { renderSections }   
         </div>
     );
 }

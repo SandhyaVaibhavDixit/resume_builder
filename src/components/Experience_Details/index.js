@@ -85,13 +85,13 @@ export const ExperienceDetails = () => {
         updateState({ experienceList : updatedExperienceList});
     }
 
-    const getformElement = () => (
+    const renderForm = (
             <Form 
-                dataStructure        = {state.dataStructure} 
+                dataStructure        ={state.dataStructure} 
                 data                 ={state.experience}
-                onInputChangeHandler = { e=> onInputChangeHandler(e)}
-                onAddHandler         = {onAddExpHandler}
-                hideAddButton        = {state.hideAddButton}
+                onInputChangeHandler ={ e=> onInputChangeHandler(e)}
+                onAddHandler         ={onAddExpHandler}
+                hideAddButton        ={state.hideAddButton}
             /> 
     );
 
@@ -111,7 +111,7 @@ export const ExperienceDetails = () => {
                 show    ={state.showModal}
                 onClose ={toggleModal}
                 title   ='Add Experience'>
-                    {getformElement()}
+                    { renderForm }
             </Modal>
 
         </div>

@@ -26,13 +26,13 @@ export const ImageCrop = (props) => {
             </div>
             <div> 
                 <input 
-                    type    ='range'
-                    value   ={scaleValue}
-                    min     ='1'
-                    max     ='10'
-                    className='actions'
-                    onChange={onScaleChange} />
-            </div>
+                    type      ='range'
+                    value     ={scaleValue}
+                    min       ='1'
+                    max       ='10'
+                    className ='actions'
+                    onChange  ={onScaleChange} />
+            </div>                                                                                     
             <div>
                 <Button
                     onClick ={onCrop}

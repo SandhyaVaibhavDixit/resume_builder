@@ -52,7 +52,7 @@ export const Table = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {renderTableRows}
+                { renderTableRows }
             </tbody>
         </table>
     )   
