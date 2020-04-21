@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import AvatarEditor from 'react-avatar-editor';
+//import AvatarEditor from 'react-avatar-editor';
 import { Button } from '../Button';
-
 import './style.scss';
+
+const AvatarEditor = require('react-avatar-editor');
 
 export const ImageCrop = (props) => {
     const { imagefile, setEditorRef, onCrop} = props;
