@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { Button } from '../Button';
 import './style.scss';
 
-const AvatarEditor = require('react-avatar-editor');
+const AvatarEditor = require('react-avatar-editor').default;
 
 export const ImageCrop = (props) => {
-    const { imagefile, setEditorRef, onCrop} = props;
+   const { imagefile, setEditorRef, onCrop} = props;
 
     const [ scaleValue, setScaleValue ] = useState(1);
 
