@@ -34,7 +34,7 @@ export const ProfileImage = () => {
     const onImageFileChangeHandler = (e) => {
         const file = e.target.files[0];
 
-        if( verifyFile(file)){
+        if( file !== undefined && verifyFile(file)){
             setImageData({ selectedFile : file });
             setShowModal(true);
         }
