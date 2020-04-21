@@ -31,7 +31,7 @@ export const ImageCrop = (props) => {
                     min       ='1'
                     max       ='10'
                     className ='actions'
-                    onChange  ={onScaleChange} />
+                    onChange  ={ e => onScaleChange(e)} />
             </div>                                                                                     
             <div>
                 <Button
