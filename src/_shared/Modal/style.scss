@@ -20,17 +20,21 @@
     top:                10%;
     box-sizing:         border-box;
     transition:         all 0.3s ease-out;
+    border-radius:      10px;
 
     .modal-header {
       padding: 5px 20px;
       text-align: center;
       display: flex;
       flex-direction: row;
+      color: #41b4b4;
+
       h3 {
         margin: 0;
         padding: 0;
         flex:3 1;
       }
+      
       .close-modal-btn {  
         cursor: pointer;      
         font-size: 20px;

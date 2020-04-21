@@ -68,9 +68,9 @@ export const DataStructure = [
         type: 'select',
         config: {
             options: [
-              { value: 'male', displayValue: 'Male' },
-              { value: 'female', displayValue: 'Female' },
-              { value:  'other', displayValue: 'Other' }
+              { value: 'male', text: 'Male' },
+              { value: 'female', text: 'Female' },
+              { value:  'other', text: 'Other' }
             ]
           },
           value: 'Male',

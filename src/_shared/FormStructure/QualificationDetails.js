@@ -5,12 +5,12 @@ export const DataStructure = [
         type: 'select',
         config: {
             options: [
-              { value: 'tenthLevel', displayValue: 'Tenth Level' },
-              { value: 'twelthLevel', displayValue: 'Twelth Level' },
-              { value: 'diploma', displayValue: 'Diploma' },
-              { value: 'graduateLevel', displayValue: 'Graduate Level' },
-              { value: 'postGraduateLevel', displayValue: 'Post Graduate Level' },
-              { value: 'doctrate', displayValue: 'Doctrate' }
+              { value: 'tenthLevel', text: 'Tenth Level' },
+              { value: 'twelthLevel', text: 'Twelth Level' },
+              { value: 'diploma', text: 'Diploma' },
+              { value: 'graduateLevel', text: 'Graduate Level' },
+              { value: 'postGraduateLevel', text: 'Post Graduate Level' },
+              { value: 'doctrate', text: 'Doctrate' }
             ]
           },
           validation: {},
@@ -53,10 +53,10 @@ export const DataStructure = [
         type: 'select',
         config: {
             options: [
-              { value: 'third', displayValue: 'Third Class' },
-              { value: 'second', displayValue: 'Second Class' },
-              { value: 'first', displayValue: 'First Class' },
-              { value: 'distiction', displayValue: 'Distiction' },
+              { value: 'third', text: 'Third Class' },
+              { value: 'second', text: 'Second Class' },
+              { value: 'first', text: 'First Class' },
+              { value: 'distiction', text: 'Distiction' },
             ]
           },
           validation: {},
@@ -99,7 +99,8 @@ export const DataStructure = [
             placeholder: 'Percentage of Mark'
         },
         validation: {
-          required: true
+          required: true,
+          isFloat: true
         }, 
         valid: false,
         touched: false

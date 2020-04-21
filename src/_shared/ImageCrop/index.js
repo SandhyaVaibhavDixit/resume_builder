@@ -24,7 +24,7 @@ export const ImageCrop = (props) => {
                     rotate ={0}
                     ref    ={setEditorRef} />
             </div>
-            <div className='actions'> 
+            <div> 
                 <input 
                     type    ='range'
                     value   ={scaleValue}

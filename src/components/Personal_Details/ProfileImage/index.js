@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ImageCrop } from "../../../_shared/ImageCrop";
 import { Modal } from '../../../_shared/Modal';
+import { verifyFile } from '../../../_utils/verifyFile';
 import defaultImage from '../../../_assets/images/user_default.png';
 
 import './style.scss';
@@ -32,10 +33,11 @@ export const ProfileImage = () => {
    
     const onImageFileChangeHandler = (e) => {
         const file = e.target.files[0];
-        //const { type } = file;
 
-        setImageData({ selectedFile : file });
-        setShowModal(true);
+        if( verifyFile(file)){
+            setImageData({ selectedFile : file });
+            setShowModal(true);
+        }
     }
 
     const renderProfileImage = () => {
@@ -46,7 +48,7 @@ export const ProfileImage = () => {
     }
 
     return(
-        <div>
+        <div className='mainDiv'>
             {renderProfileImage()}
             <br/>
             <label className='labelUpload' title="Select image">  
@@ -64,11 +66,13 @@ export const ProfileImage = () => {
                 show    = {showModal}
                 onClose = {toggleModal}
                 title   = 'Crop'>
+
                 <ImageCrop 
                     imagefile     ={imageData.selectedFile} 
                     setEditorRef  ={setEditorRef} 
                     onCrop        ={onCrop} 
                 />  
+                
             </Modal>
         </div>
     );

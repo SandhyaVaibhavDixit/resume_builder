@@ -7,7 +7,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'Name of the company'
         },
-        value: '',
         validation: {
           required: true
         }, 
@@ -22,7 +21,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'Name of the post'
         },
-        value: '',
         validation: {
           required: true
         }, 
@@ -37,7 +35,6 @@ export const DataStructure = [
             type: 'text',
             placeholder: 'Ex: 2 years and 3 months, 2 months, 16 days'
         },
-        value: '',
         validation: {
         required: true
         }, 

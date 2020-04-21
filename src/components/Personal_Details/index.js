@@ -6,14 +6,12 @@ import { ProfileImage } from './ProfileImage';
 
 import './style.scss';
 
-export const PersonalDetails = (props) => {
+export const PersonalDetails = () => {
     
     const [personalDetails, setPersonalDetails] = useState(DataStructure);
 
-    const inputChangedHandler = (e) => {
-        const {name, value} = e.target;
-
-       const updatedPersonalDetails = personalDetails.map( detail => {
+    const updatePersonaldetails = (name, value ) =>{
+        const updatedPersonalDetails = personalDetails.map( detail => {
             if (detail.name === name){
 
                 detail.value = value;
@@ -31,25 +29,31 @@ export const PersonalDetails = (props) => {
         setPersonalDetails(updatedPersonalDetails);
     }
 
-    const formElement = (
+    const onInputChangedHandler = (e) => {
+        const {name, value} = e.target;
+        updatePersonaldetails(name, value);
+    }
+
+    const getFormElement = () => (
         <div className='form'>
-          { personalDetails.map(eachDetail => (
-            <Input
-                key            ={eachDetail.name}
-                details        ={eachDetail}       
-                value          ={eachDetail.value}     
-                shouldValidate ={eachDetail.validation}
-                colClassName   ='col'
-                changed ={e => inputChangedHandler(e)}
-            />            
-          ))}
+          { personalDetails.map(eachDetail => {
+                return (<Input
+                            key            ={eachDetail.name}
+                            details        ={eachDetail}       
+                            value          ={eachDetail.value}     
+                            shouldValidate ={eachDetail.validation}
+                            changed ={e => onInputChangedHandler(e)}
+                        />
+                    );
+                })
+            }
         </div>
       );
       
     return(
         <div className='personalDetails row'>
             <div className='detailsDiv'>
-                {formElement}
+                {getFormElement()}
             </div>
             <div className='profileImageDiv'>
                 <ProfileImage />

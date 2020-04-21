@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Button } from '../../_shared/Button';
 import { Modal } from '../../_shared/Modal';
-import { Input } from '../../_shared/Input';
+import { Form } from '../../_shared/Form';
 import { DataStructure } from '../../_shared/FormStructure/AttachDocumentDetails';
 import { CheckValidity } from '../../_utils/CheckValidity';
 import { generateKey } from '../../_utils/generateKey';
+import { getInvalidField } from '../../_utils/getInvalidField';
 
 import './style.scss';
 
@@ -13,156 +14,171 @@ export const AttachDocumentDetails = () =>{
          title: '',
          description: '',
          fileName: '',
-         file: '',
+         file: null,
          url: ''
     }
     
-    const [ showModal, setShowModal] = useState(false);
-    const [ fileData, setFileData] = useState(initialData);
-    const [ fileDataList, setFileDataList] = useState([]);
-    const [ dataStructure, setDataStructure] = useState(DataStructure);
-    // const inputFileRef = createRef();
+    const initialSate = {
+        showModal : false,
+        fileData : initialData,
+        fileDataList : [],
+        dataStructure : DataStructure,
+        hideAddButton : true 
+    };
 
-    const onClick = () =>{
-        setShowModal(true);
+    const [ state, setState ] = useState(initialSate);
+    const updateState = data => setState(preveState => ({ ...preveState, ...data }));
+
+    const onShowModalClick = () =>{
+        updateState({ showModal : true});
     }
 
     const toggleModal = () => {
-        setShowModal(!showModal);
+        updateState({ showModal : !state.showModal });
     }
 
-    const onChange = (e) =>{
+    const onInputFileChange = (e) =>{
         const file = e.target.files[0];
-        setFileData({fileName: file.name, file: file });
+        const updatedFileData = {
+            ...state.fileData,
+            fileName: file.name,
+            file: file 
+        };
+        
+        updateState({ fileData: updatedFileData});
+        if (file != null){
+            updateState({ hideAddButton: false });
+        }
     }
 
-    const inputChangedHandler = (e) => {
+    const checkHideAddButton = () => {
+        const invalidField = getInvalidField(state.dataStructure);
+
+        if (Boolean(invalidField) === false && state.fileData.file != null){
+            updateState({ hideAddButton : false });
+        }    
+        else {
+            updateState({ hideAddButton: true });
+        }
+    }
+
+    const onInputChangeHandler = (e) => {
         const {name, value} = e.target;
         const updatedFileData = {
-            ...fileData,
+            ...state.fileData,
             [name]: value
         };
 
-        const updateDataStructure = dataStructure.map( detail => {
+        const updateDataStructure = state.dataStructure.map( detail => {
             if (detail.name === name) {
-                    detail.valid = CheckValidity(
-                        value,
-                        detail.validation
-                    );
-                    detail.touched= true
-                    };
-
-                    return detail;
-        });
-            
-        setFileData(updatedFileData);
-        setDataStructure(updateDataStructure);
-    } 
-
-    const onAddHandler = () => {
-        dataStructure.map(detail => {
-            detail.touched = false;
-            detail.valid = false;
-
+                detail.valid = CheckValidity(
+                    value,
+                    detail.validation
+                );
+                detail.touched= true
+            };                
             return detail;
         });
+           
+        checkHideAddButton();
+        updateState({fileData : updatedFileData, dataStructure: updateDataStructure });
+    } 
 
-        const url = URL.createObjectURL(fileData.file);
+    const onAddFileHandler = () => {
+        const url = state.fileData.file !== null ?
+                     URL.createObjectURL(state.fileData.file) :
+                     null ;
+
         const key = generateKey(1, 100);
         const updatedFileListData = [
-            ...fileDataList,
-            {   key : key,
-                url : url,
-                ...fileData
+            ...state.fileDataList,
+            {  
+                ...state.fileData,
+                key : key,
+                url : url
             }
         ];
 
-        setFileDataList(updatedFileListData);
-        setFileData(initialData);
-        setDataStructure(dataStructure);
+        setState({ fileDataList: updatedFileListData, hideAddButton : true });
+        updateState({ fileData: initialData, dataStructure: DataStructure });
         toggleModal();
     }
 
     const onDeleteHandler = (key) => {
         //Remove by filter.
-        setFileDataList(fileDataList.filter(item => item.key !== key));
+        const updatedFileDataList = state.fileDataList.filter(item => item.key !== key);
+        updateState({ fileDataList : updatedFileDataList});
     }
 
     const onFileLoadHanlder = (url) => {
         window.open(url, "_blank");
     }
 
-    const formElement = (
-        <div>
+    const getFormElement = () => (
+        <Fragment>
             <div className='form'>
-            <div className='fileUpload'>
-                <label className='labelUpload' title='Upload'>
-                    <input type ='file'
+                <div className='fileUpload'>
+                    <label className='labelUpload' title='Upload'>
+                        <input 
+                            type ='file'
                             hidden
-                            onChange ={e => onChange(e)}/>
-                        Select File
-                    </label>
-                    <span className='fileNameSpan'>{fileData.fileName}</span>
-            </div>
-            { dataStructure.map(eachDetail => (
-                <Input
-                    key            ={eachDetail.name}
-                    details        ={eachDetail}
-                    value          ={fileData[eachDetail.name]}
-                    shouldValidate ={eachDetail.validation}
-                    colClassName   ='col'
-                    changed        ={e => inputChangedHandler(e)}
-                />            
-            ))}            
-            </div>
-            <div className='formBottom'>
-                <Button
-                    onClick ={onAddHandler}
-                    title   ='Add' 
-                />
-           </div>
-        </div>
-    )
-
-    const hasRows = (fileDataList &&  fileDataList.length !== 0);
-
-    let resultView = null;
-    
-    if(hasRows === true ){
-        resultView = (fileDataList.map(eachFile => {
-            return(
-                <div className="fileList" key={eachFile.key}>
-                    <div className="fileTitle"> 
-                        <span><b>{eachFile.title}</b></span><br/>
-                        <span>{eachFile.description} </span>
-                         
-                    </div>
-                    <div className='otherDiv'>
-                        <div onClick={() => onFileLoadHanlder(eachFile.url)} 
-                             alt='View File'>View File</div> 
-                    </div>
-                    <div className="otherDiv">
-                        <div title = 'Delete'
-                           onClick={() => onDeleteHandler(eachFile.key)} >Delete </div>
-                    </div>                    
+                            onChange ={e => onInputFileChange(e)}
+                        />
+                            Select File
+                        </label>
+                        <span className='fileNameSpan'>{state.fileData.fileName}</span>
                 </div>
-            )
-        })
+            </div>
+
+            <Form 
+                dataStructure= {state.dataStructure} 
+                data= {state.fileData} 
+                onInputChangeHandler= { e=> onInputChangeHandler(e)}
+                onAddHandler = {onAddFileHandler}
+                hideAddButton = {state.hideAddButton}
+            /> 
+        </Fragment>
     )
+
+    const getResultView = () => {
+        const hasRows = (state.fileDataList &&  state.fileDataList.length !== 0);
+        if (hasRows === true ){
+            return (state.fileDataList.map(eachFile => {
+                return(
+                    <div className="fileList" key={eachFile.key}>
+                        <div className="fileTitle"> 
+                            <span><b>{eachFile.title}</b></span><br/>
+                            <span>{eachFile.description} </span>
+                            
+                        </div>
+                        <div className='otherDiv'>
+                            <div onClick={() => onFileLoadHanlder(eachFile.url)} 
+                                alt='View File'>View File</div> 
+                        </div>
+                        <div className="otherDiv">
+                            <div title = 'Delete'
+                            onClick={() => onDeleteHandler(eachFile.key)} >Delete </div>
+                        </div>                    
+                    </div>
+                )
+            }))
+        }
     }
 
     return (
         <div className='attachContainer'>
-            {resultView}
+            {getResultView()}
             <Button 
                 title   ="Add File"
-                onClick ={onClick}/>
+                onClick ={onShowModalClick}/>
 
             <Modal 
-                show    = {showModal}
+                show    = {state.showModal}
                 onClose = {toggleModal}
                 title   = 'Add files'>
-                    {formElement}
+
+                    {getFormElement()}
+
             </Modal>
         </div>
     );

@@ -1,62 +1,50 @@
 import React from 'react';
-
+import { Select } from '../Select';
+import { Textarea } from '../Textarea';
 import './style.scss';
 
 export const Input = ( props ) => {
-    const { colClassName, shouldValidate, changed, value} = props;
+    const { shouldValidate, changed, value} = props;
     const { name, label, type, config, valid, touched} = props.details;
+
     let inputElement = null;
-    const inputClasses = type === 'textarea' ? ['col inputElement textarea'] : ['col inputElement'];
-    
-    inputClasses.push(colClassName);
+    let inputClasses = ['col inputElement'];
+
     if ((!valid) && shouldValidate && touched) {
         inputClasses.push('invalid');
     }
 
     switch ( type ) { 
-        case ( 'input' ):
-            inputElement = <input
-                key={name}
-                name={name}
-                className={inputClasses.join(' ')}
-                {...config}
-                value={value}
-                onChange={changed} />;
-            break;
         case ( 'textarea' ):
-            inputElement = <textarea
-                key={name}
-                rows={5}
-                cols={50}
-                name={name}
-                className={inputClasses.join(' ')}
-                {...config}
-                value={value || ""}
-                onChange={changed}/>;
+            inputClasses.push('textarea'); 
+            inputElement = <Textarea 
+                                name    ={name} 
+                                value   ={value}
+                                classes = {inputClasses}
+                                config  = {config}
+                                changed ={changed}
+                            />  
             break;
         case ( 'select' ):
-            inputElement = <select
-                key={name}
-                name={name}
-                className={inputClasses.join(' ')}
-                value={value}
-                onChange={changed}>
-                {config.options.map(option => (
-                    <option key={option.value} value={option.value}>
-                        {option.displayValue}
-                    </option>
-                ))}
-                </select>;
+            inputElement = <Select 
+                                name    ={name} 
+                                value   ={value}
+                                classes = {inputClasses}
+                                config  = {config}
+                                changed ={changed}
+                            />  
             break;
+        case ( 'input' ):
         default:
             inputElement = <input
-                key={name}
-                name={name}
-                className={inputClasses.join(' ')}
-                {...config}
-                value={value || " "}
-                onChange={changed} />;
-    }
+                                key         ={name}
+                                name        ={name}
+                                className   ={inputClasses.join(' ')}
+                                {...config}
+                                value       ={value}
+                                onChange    ={changed} 
+                            />
+        }
 
     return (
         <div className='input'>
@@ -64,5 +52,4 @@ export const Input = ( props ) => {
             {inputElement}
         </div>
     );
-
-};
+}

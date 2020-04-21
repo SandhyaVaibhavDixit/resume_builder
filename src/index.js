@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Form } from './containers/Form';
+
 
 ReactDOM.render(
   // <React.StrictMode>
-    <App />,
+  <Form />,
   // </React.StrictMode>
   document.getElementById('root')
 );
