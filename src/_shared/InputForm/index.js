@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
 
-export const Form = (props) => {
+export const InputForm = (props) => {
     const { dataStructure, data, hideAddButton, onInputChangeHandler, onAddHandler } = props;
 
     return(

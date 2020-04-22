@@ -1,9 +1,9 @@
-export const verifyFile = (file) => {
-    const acceptedFileExtension = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
+export const verifyFile = (file, acceptedFileExtension) => {
+    const { name } = file;
 
-    const { type } = file;
+    var filextenion = name.substring(name.lastIndexOf(".") + 1);
 
-    if (acceptedFileExtension.includes(type)){
+    if (acceptedFileExtension.includes(filextenion)){
         return true;
     }
 

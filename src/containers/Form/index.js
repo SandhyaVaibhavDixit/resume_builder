@@ -1,8 +1,8 @@
 import React from 'react';
-import { PersonalDetails } from '../../components/Personal_Details';
-import { ExperienceDetails } from '../../components/Experience_Details';
-import { QualificationDetails } from '../../components/Qualification_Details';
-import { AttachDocumentDetails } from '../../components/AttachDocument_Details';
+import { PersonalDetails } from '../../components/PersonalDetails';
+import { ExperienceDetails } from '../../components/ExperienceDetails';
+import { QualificationDetails } from '../../components/QualificationDetails';
+import { AttachDocumentDetails } from '../../components/AttachDocumentDetails';
 import { Section } from '../../_shared/Section';
 
 import './style.scss';

@@ -33,8 +33,9 @@ export const ProfileImage = () => {
    
     const onImageFileChangeHandler = (e) => {
         const file = e.target.files[0];
+        const acceptedFileExtension = ['png', 'jpg', 'jpeg', 'gif'];
 
-        if( file !== undefined && verifyFile(file)){
+        if( file !== undefined && verifyFile(file, acceptedFileExtension)){
             setImageData({ selectedFile : file });
             setShowModal(true);
         }

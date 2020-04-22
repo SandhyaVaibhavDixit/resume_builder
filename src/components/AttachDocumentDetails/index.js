@@ -1,11 +1,11 @@
 import React, { useState, Fragment } from 'react';
 import { Button } from '../../_shared/Button';
 import { Modal } from '../../_shared/Modal';
-import { Form } from '../../_shared/Form';
+import { InputForm } from '../../_shared/InputForm';
 import { DataStructure } from '../../_shared/FormStructure/AttachDocumentDetails';
 import { CheckValidity } from '../../_utils/CheckValidity';
 import { generateKey } from '../../_utils/generateKey';
-import { getInvalidField } from '../../_utils/getInvalidField';
+import { verifyFile } from '../../_utils/verifyFile';
 
 import './style.scss';
 
@@ -39,26 +39,19 @@ export const AttachDocumentDetails = () =>{
 
     const onInputFileChange = (e) =>{
         const file = e.target.files[0];
-        const updatedFileData = {
-            ...state.fileData,
-            fileName: file.name,
-            file: file 
-        };
+        const acceptedFileExtension = ['png', 'jpg', 'jpeg', 'gif', 'txt', 'doc', 'docx', 'pdf'];
+        if( file !== undefined && verifyFile(file, acceptedFileExtension)){
         
-        updateState({ fileData: updatedFileData});
-        if (file != null){
-            updateState({ hideAddButton: false });
-        }
-    }
-
-    const checkHideAddButton = () => {
-        const invalidField = getInvalidField(state.dataStructure);
-
-        if (Boolean(invalidField) === false && state.fileData.file != null){
-            updateState({ hideAddButton : false });
-        }    
-        else {
-            updateState({ hideAddButton: true });
+            const updatedFileData = {
+                ...state.fileData,
+                fileName: file.name,
+                file: file 
+            };
+            
+            updateState({ fileData: updatedFileData});
+            if (file != null){
+                updateState({ hideAddButton: false });
+            }
         }
     }
 
@@ -80,7 +73,7 @@ export const AttachDocumentDetails = () =>{
             return detail;
         });
            
-        checkHideAddButton();
+        //checkHideAddButton();
         updateState({fileData : updatedFileData, dataStructure: updateDataStructure });
     } 
 
@@ -130,7 +123,7 @@ export const AttachDocumentDetails = () =>{
                 </div>
             </div>
 
-            <Form 
+            <InputForm 
                 dataStructure= {state.dataStructure} 
                 data= {state.fileData} 
                 onInputChangeHandler= { e=> onInputChangeHandler(e)}

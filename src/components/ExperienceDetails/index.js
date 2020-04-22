@@ -3,7 +3,7 @@ import { DataStructure } from '../../_shared/FormStructure/ExperienceDetails';
 import { Modal } from '../../_shared/Modal';
 import { Table } from '../../_shared/Table';
 import { Button } from '../../_shared/Button';
-import { Form } from '../../_shared/Form';
+import { InputForm } from '../../_shared/InputForm';
 import { CheckValidity } from '../../_utils/CheckValidity'; 
 import { generateKey } from '../../_utils/generateKey';
 import { getInvalidField } from "../../_utils/getInvalidField";
@@ -86,7 +86,7 @@ export const ExperienceDetails = () => {
     }
 
     const renderForm = (
-            <Form 
+            <InputForm 
                 dataStructure        ={state.dataStructure} 
                 data                 ={state.experience}
                 onInputChangeHandler ={ e=> onInputChangeHandler(e)}

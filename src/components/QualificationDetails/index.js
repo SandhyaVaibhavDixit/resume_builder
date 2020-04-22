@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DataStructure } from '../../_shared/FormStructure/QualificationDetails';
-import { Form } from '../../_shared/Form';
+import { InputForm } from '../../_shared/InputForm';
 import { Modal } from '../../_shared/Modal';
 import { Table } from '../../_shared/Table';
 import { Button } from '../../_shared/Button';
@@ -91,7 +91,7 @@ export const QualificationDetails = () => {
     }
 
     const renderForm = (
-            <Form 
+            <InputForm 
                 dataStructure = {state.dataStructure} 
                 data ={state.qualification}
                 onInputChangeHandler = { e=> onInputChangeHandler(e)}
