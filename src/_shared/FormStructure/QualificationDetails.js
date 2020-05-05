@@ -5,12 +5,12 @@ export const DataStructure = [
         type: 'select',
         config: {
             options: [
-              { value: 'tenthLevel', text: 'Tenth Level' },
-              { value: 'twelthLevel', text: 'Twelth Level' },
-              { value: 'diploma', text: 'Diploma' },
-              { value: 'graduateLevel', text: 'Graduate Level' },
-              { value: 'postGraduateLevel', text: 'Post Graduate Level' },
-              { value: 'doctrate', text: 'Doctrate' }
+              { value: 'Tenth Level', text: 'Tenth Level' },
+              { value: 'Twelth Level', text: 'Twelth Level' },
+              { value: 'Diploma', text: 'Diploma' },
+              { value: 'Graduate Level', text: 'Graduate Level' },
+              { value: 'Post Graduate Level', text: 'Post Graduate Level' },
+              { value: 'Doctrate', text: 'Doctrate' }
             ]
           },
           validation: {},
@@ -53,10 +53,10 @@ export const DataStructure = [
         type: 'select',
         config: {
             options: [
-              { value: 'third', text: 'Third Class' },
-              { value: 'second', text: 'Second Class' },
-              { value: 'first', text: 'First Class' },
-              { value: 'distiction', text: 'Distiction' },
+              { value: 'Third Class', text: 'Third Class' },
+              { value: 'Second Class', text: 'Second Class' },
+              { value: 'First Class', text: 'First Class' },
+              { value: 'Distiction', text: 'Distiction' },
             ]
           },
           validation: {},

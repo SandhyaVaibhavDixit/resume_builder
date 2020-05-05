@@ -1,5 +1,20 @@
 export const DataStructure = [
     {
+        name: 'fileName',
+        label: 'File',
+        type: 'file',
+        config: {
+            type: 'file',
+            placeholder: 'File'
+        },
+        value: '',
+        validation: {
+          required: true
+        }, 
+        valid: false,
+        touched: false
+    },
+    {
         name: 'title',
         label: 'Title',
         type: 'input',

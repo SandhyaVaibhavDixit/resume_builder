@@ -1,36 +1,45 @@
 import React, { useState } from 'react';
 import { DataStructure } from '../../_shared/FormStructure/QualificationDetails';
-import { InputForm } from '../../_shared/InputForm';
 import { Modal } from '../../_shared/Modal';
 import { Table } from '../../_shared/Table';
+import { Input } from "../../_shared/Input";
 import { Button } from '../../_shared/Button';
-import { CheckValidity } from '../../_utils/CheckValidity'; 
 import { generateKey } from '../../_utils/generateKey';
-import { getInvalidField } from "../../_utils/getInvalidField";
+import useForm from '../../_utils/useForm';
 
 import './style.scss';
 
 export const QualificationDetails = () => {
-    const initialData = {
-        qualificationLevel: 'tenth',
-        universityBoard: '',
-        yearOfPass: 0,
-        resultClassification: 'third',
-        institute: '',
-        subject: '',
-        percentageOfMark: '',
-    };
+    const onAddQualificationHandler = () => { 
+        const key = generateKey(1, 100);
+        
+        const updatedQualificationList = [
+            ...state.qualificationList,
+            {   
+                key: key,
+                ...values
+            }
+        ];
 
-    const initialState = {
-        qualification: initialData,
-        qualificationList : [],
-        showModal: false,
-        dataStructure: DataStructure,
-        hideAddButton : true
+        updateState({ qualificationList : updatedQualificationList});
+        values = {};
+        toggleModal();
     }
 
+    let {
+        values,
+        errors,
+        handleChange,
+        handleSubmit,
+      } = useForm(onAddQualificationHandler, DataStructure);
+
+    const initialState = {
+        qualificationList: [],
+        showModal: false,
+    };
+
     const [ state, setState ] = useState(initialState);
-    const updateState = data => setState( prevState => ({ ...prevState, ...data}));
+    const updateState = data => setState(prevState => ({ ...prevState, ...data}));
 
     const onShowModalClick = () =>{
         updateState({ showModal : true });
@@ -40,82 +49,55 @@ export const QualificationDetails = () => {
         updateState({ showModal : !state.showModal });
     }
 
-    const onInputChangeHandler = (e) => {
-        const { name, value } = e.target;
-        const updatedQualification = {
-            ...state.qualification,
-            [name]: value
-        };
-
-        const updatedDataStructure = state.dataStructure.map(field => {
-            if (field.name === name) {
-                field.touched = true;
-                field.value = value;
-                field.valid = CheckValidity(
-                    value,
-                    field.validation
-                );
-            }
-            return field;
-        });
-                
-        const invalidField = getInvalidField(state.dataStructure);
-        if (Boolean(invalidField) === false){
-            updateState({ hideAddButton: false });
-        }
-        else {
-            updateState({ hideAddButton: true });
-        }
-
-        updateState({ qualification: updatedQualification, dataStructure: updatedDataStructure});
-    }
-
-    const onAddQualificationHandler = () =>{
-        const key = generateKey(1, 100);
-        const updatedQualificationList = [
-            ...state.qualificationList,
-            {   key : key,
-                ...state.qualification
-            }
-        ];
-
-        updateState({ qualificationList : updatedQualificationList, hideAddButton: true});
-        updateState({ qualification: initialData, dataStructure: DataStructure});
-        toggleModal();
-    }
-
-    const onDeleteQualificationHandler = (key) => {
+    const onDeleteHandler = (key) => {
         //Remove by filter.
-        const updatedQualificationList = state.qualificationList.filter(item => item.key !== key); 
-        updateState({ qualificationList: updatedQualificationList});
+        const updatedQualificationList = state.qualificationList.filter(item => item.key !== key);
+        updateState({ qualificationList : updatedQualificationList});
     }
 
     const renderForm = (
-            <InputForm 
-                dataStructure = {state.dataStructure} 
-                data ={state.qualification}
-                onInputChangeHandler = { e=> onInputChangeHandler(e)}
-                onAddHandler = {onAddQualificationHandler}
-                hideAddButton = {state.hideAddButton}
-            /> 
-    );
+        <form onSubmit={handleSubmit} className='form'>
+        {
+            DataStructure.map(eachDetail => {
+                return (
+                    <div key ={eachDetail.name} className='formDiv'>
+                        <Input
+                            details  ={eachDetail}
+                            changed  ={handleChange} 
+                            value    ={values[eachDetail.name] || ''}   
+                        />
+                        {errors[eachDetail.name] && (
+                            <p className="is-danger">{errors[eachDetail.name]}</p>
+                        )}   
+                    </div> 
+                )           
+            })
+        }
+            <div className='formBottom'>
+                    <Button
+                        title   ='Add' 
+                        type    ='Submit'
+                    />
+            </div>
+        </form>
+        );
 
     return (
         <div className='quaContainer'>
             <Table
-                tableHeader ={state.dataStructure}
-                tableBody   ={state.qualificationList }
-                onDelete    ={onDeleteQualificationHandler }/>
+                tableHeader ={DataStructure}
+                tableBody   ={state.qualificationList}
+                onDelete    ={onDeleteHandler}/>
 
             <Button
                 onClick ={onShowModalClick}
-                title   ='Add Qulaifications'                
+                title   ='Add Qualification'                
             />
 
             <Modal 
                 show    ={state.showModal}
                 onClose ={toggleModal}
-                title   ='Add Educational Details'>
+                title   ='Add Qualification'>
                     { renderForm }
             </Modal>
 

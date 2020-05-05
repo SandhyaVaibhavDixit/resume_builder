@@ -36,7 +36,7 @@ export const DataStructure = [
             placeholder: 'Ex: 2 years and 3 months, 2 months, 16 days'
         },
         validation: {
-        required: true
+           required: true
         }, 
         valid: false,
         touched: false

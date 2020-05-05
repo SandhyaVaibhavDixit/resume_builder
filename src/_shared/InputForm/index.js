@@ -1,32 +1,41 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
+import { CheckValidity } from '../../_utils/CheckValidity';
 
 export const InputForm = (props) => {
-    const { dataStructure, data, hideAddButton, onInputChangeHandler, onAddHandler } = props;
-
+    const { dataStructure, data, onInputChangeHandler, onAddHandler } = props;
+    
+    let isValid = true;
     return(
-        <Fragment>
-            <div className='form'>
+            <form className='form'>
                 {
-                    dataStructure.map(eachDetail => (
-                        <Input
-                            key            ={eachDetail.name}
-                            details        ={eachDetail}
-                            value          ={data[eachDetail.name] || ''}
-                            shouldValidate ={eachDetail.validation}
-                            changed        ={onInputChangeHandler}
-                        />            
-                    )
-                )}
-            </div>
+                    dataStructure.map(eachDetail => {
+                        const shouldValidate = Boolean(eachDetail.validation);
+                        if (shouldValidate === true) {
+                            isValid = isValid && 
+                                      CheckValidity( data[eachDetail.name],
+                                                     eachDetail.validation);
+                        }
+
+                        return (<Input
+                                key      ={eachDetail.name}
+                                details  ={eachDetail}
+                                value    ={data[eachDetail.name] || ''}
+                                isValid  ={isValid}
+                                changed  ={onInputChangeHandler}
+                            />)           
+                           }
+                )
+                }
             <div className='formBottom'>
                     <Button
-                        onClick ={onAddHandler}
                         title   ='Add' 
-                        hidden  ={hideAddButton}               
+                        type    ='Submit'
+                        onClick = {onAddHandler}
+                        hidden  ={!isValid}               
                     />
             </div>
-        </Fragment>
+        </form>
     )
 };

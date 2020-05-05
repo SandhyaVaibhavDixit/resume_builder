@@ -4,13 +4,13 @@ import { Textarea } from '../Textarea';
 import './style.scss';
 
 export const Input = ( props ) => {
-    const { shouldValidate, changed, value} = props;
-    const { name, label, type, config, valid, touched} = props.details;
+    const { isValid, touched, shouldValidate, changed, value, fileChanged } = props;
+    const { name, label, type, config } = props.details;
 
     let inputElement = null;
-    let inputClasses = ['col inputElement'];
+    let inputClasses = ['inputElement'];
 
-    if ((!valid) && shouldValidate && touched) {
+    if (!isValid && touched && shouldValidate)  {
         inputClasses.push('invalid');
     }
 
@@ -33,6 +33,20 @@ export const Input = ( props ) => {
                                 config  = {config}
                                 changed ={changed}
                             />  
+            break;
+        case ( 'file' ): 
+            inputElement = <div className='fileUpload'>
+                            <br></br>
+                            <label className='labelUpload' title='Upload'>
+                                <input 
+                                    type ='file'
+                                    hidden
+                                    onChange ={fileChanged}
+                                />
+                                    Select File
+                                </label>
+                                <span className='fileNameSpan'>{value}</span>
+                        </div>
             break;
         case ( 'input' ):
         default:

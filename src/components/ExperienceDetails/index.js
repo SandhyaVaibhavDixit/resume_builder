@@ -3,25 +3,37 @@ import { DataStructure } from '../../_shared/FormStructure/ExperienceDetails';
 import { Modal } from '../../_shared/Modal';
 import { Table } from '../../_shared/Table';
 import { Button } from '../../_shared/Button';
-import { InputForm } from '../../_shared/InputForm';
-import { CheckValidity } from '../../_utils/CheckValidity'; 
+import { Input } from '../../_shared/Input';
 import { generateKey } from '../../_utils/generateKey';
-import { getInvalidField } from "../../_utils/getInvalidField";
+import useForm from '../../_utils/useForm';
 import './style.scss';
 
 export const ExperienceDetails = () => {
-    const initialData = {
-        company: '',
-        post: '',
-        duration: ''
-    };
+    const onAddExpHandler = () => { 
+        const key = generateKey(1, 100);
+        
+        const updatedExperienceList = [
+            ...state.experienceList,
+            {   
+                key: key,
+                ...values
+            }
+        ];
+
+        updateState({ experienceList : updatedExperienceList});
+        toggleModal();
+    }
+
+    const {
+        values,
+        errors,
+        handleChange,
+        handleSubmit,
+      } = useForm(onAddExpHandler, DataStructure);
 
     const initialState = {
-        experience: initialData,
         experienceList: [],
         showModal: false,
-        dataStructure: DataStructure,
-        hideAddButton: true
     };
 
     const [ state, setState ] = useState(initialState);
@@ -35,50 +47,6 @@ export const ExperienceDetails = () => {
         updateState({ showModal : !state.showModal });
     }
 
-    const onInputChangeHandler = (e) => {
-        const { name, value } = e.target;
-        const updatedExperience = {
-            ...state.experience,
-            [name]: value
-        };
-
-        const updatedDataStructure = state.dataStructure.map(field => {
-            if (field.name === name) {
-                    field.touched = true;
-                    field.valid = CheckValidity(
-                        value,
-                        field.validation
-                );
-            }
-            return field;
-        });
-                
-        const invalidField = getInvalidField(state.dataStructure);
-
-        if (Boolean(invalidField) === false){
-            updateState({hideAddButton: false});
-        }
-        else {
-            updateState({hideAddButton: true});
-        }
-
-        updateState({ experience : updatedExperience, dataStructure : updatedDataStructure});
-    }
-
-    const onAddExpHandler = () =>{
-        const key = generateKey(1, 100);
-        const updatedExperienceList = [
-            ...state.experienceList,
-            {   key : key,
-                ...state.experience
-            }
-        ];
-
-        setState({ experienceList : updatedExperienceList, hideAddButton: true});
-        updateState({ dataStructure: DataStructure, experience: initialData});
-        toggleModal();
-    }
-
     const onDeleteHandler = (key) => {
         //Remove by filter.
         const updatedExperienceList = state.experienceList.filter(item => item.key !== key);
@@ -86,19 +54,36 @@ export const ExperienceDetails = () => {
     }
 
     const renderForm = (
-            <InputForm 
-                dataStructure        ={state.dataStructure} 
-                data                 ={state.experience}
-                onInputChangeHandler ={ e=> onInputChangeHandler(e)}
-                onAddHandler         ={onAddExpHandler}
-                hideAddButton        ={state.hideAddButton}
-            /> 
-    );
+        <form onSubmit={handleSubmit} className='form'>
+        {
+            DataStructure.map(eachDetail => {
+                return (
+                    <div key ={eachDetail.name}>
+                        <Input
+                            details  ={eachDetail}
+                            changed  ={handleChange} 
+                            value    ={values[eachDetail.name] || ''}   
+                        />
+                        {errors[eachDetail.name] && (
+                            <p className="is-danger">{errors[eachDetail.name]}</p>
+                        )}   
+                    </div> 
+                )           
+            })
+        }
+            <div className='formBottom'>
+                    <Button
+                        title   ='Add' 
+                        type    ='Submit'
+                    />
+            </div>
+        </form>
+        );
 
     return (
         <div className='expContainer'>
             <Table
-                tableHeader ={state.dataStructure}
+                tableHeader ={DataStructure}
                 tableBody   ={state.experienceList}
                 onDelete    ={onDeleteHandler}/>
 

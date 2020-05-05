@@ -40,7 +40,9 @@ export const PersonalDetails = () => {
                 return (<Input
                             key            ={eachDetail.name}
                             details        ={eachDetail}       
-                            value          ={eachDetail.value}     
+                            isValid        ={eachDetail.valid}
+                            value          ={eachDetail.value}
+                            touched        ={eachDetail.touched}     
                             shouldValidate ={eachDetail.validation}
                             changed ={e => onInputChangedHandler(e)}
                         />

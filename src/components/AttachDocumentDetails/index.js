@@ -1,29 +1,44 @@
 import React, { useState, Fragment } from 'react';
 import { Button } from '../../_shared/Button';
 import { Modal } from '../../_shared/Modal';
-import { InputForm } from '../../_shared/InputForm';
+import { Input } from "../../_shared/Input";
+import useForm from '../../_utils/useForm';
 import { DataStructure } from '../../_shared/FormStructure/AttachDocumentDetails';
-import { CheckValidity } from '../../_utils/CheckValidity';
 import { generateKey } from '../../_utils/generateKey';
-import { verifyFile } from '../../_utils/verifyFile';
 
 import './style.scss';
 
 export const AttachDocumentDetails = () =>{
-    const initialData = {
-         title: '',
-         description: '',
-         fileName: '',
-         file: null,
-         url: ''
+    const onAddFileHandler = () => { 
+        const key = generateKey(1, 100);
+        const url = values.file !== null ?
+                     URL.createObjectURL(values.file) :
+                     null ;
+        
+        const updatedFileDataList = [
+            ...state.fileDataList,
+            {   
+                key: key,
+                url: url,
+                ...values
+            }
+        ];
+
+        updateState({ fileDataList : updatedFileDataList});
+        toggleModal();
     }
-    
+
+    const {
+        values,
+        errors,
+        handleChange,
+        handleFileChange,
+        handleSubmit,
+      } = useForm(onAddFileHandler, DataStructure);
+
     const initialSate = {
         showModal : false,
-        fileData : initialData,
         fileDataList : [],
-        dataStructure : DataStructure,
-        hideAddButton : true 
     };
 
     const [ state, setState ] = useState(initialSate);
@@ -35,66 +50,6 @@ export const AttachDocumentDetails = () =>{
 
     const toggleModal = () => {
         updateState({ showModal : !state.showModal });
-    }
-
-    const onInputFileChange = (e) =>{
-        const file = e.target.files[0];
-        const acceptedFileExtension = ['png', 'jpg', 'jpeg', 'gif', 'txt', 'doc', 'docx', 'pdf'];
-        if( file !== undefined && verifyFile(file, acceptedFileExtension)){
-        
-            const updatedFileData = {
-                ...state.fileData,
-                fileName: file.name,
-                file: file 
-            };
-            
-            updateState({ fileData: updatedFileData});
-            if (file != null){
-                updateState({ hideAddButton: false });
-            }
-        }
-    }
-
-    const onInputChangeHandler = (e) => {
-        const {name, value} = e.target;
-        const updatedFileData = {
-            ...state.fileData,
-            [name]: value
-        };
-
-        const updateDataStructure = state.dataStructure.map( detail => {
-            if (detail.name === name) {
-                detail.valid = CheckValidity(
-                    value,
-                    detail.validation
-                );
-                detail.touched= true
-            };                
-            return detail;
-        });
-           
-        //checkHideAddButton();
-        updateState({fileData : updatedFileData, dataStructure: updateDataStructure });
-    } 
-
-    const onAddFileHandler = () => {
-        const url = state.fileData.file !== null ?
-                     URL.createObjectURL(state.fileData.file) :
-                     null ;
-
-        const key = generateKey(1, 100);
-        const updatedFileListData = [
-            ...state.fileDataList,
-            {  
-                ...state.fileData,
-                key : key,
-                url : url
-            }
-        ];
-
-        setState({ fileDataList: updatedFileListData, hideAddButton : true });
-        updateState({ fileData: initialData, dataStructure: DataStructure });
-        toggleModal();
     }
 
     const onDeleteHandler = (key) => {
@@ -109,27 +64,31 @@ export const AttachDocumentDetails = () =>{
 
     const renderForm = (
         <Fragment>
-            <div className='form'>
-                <div className='fileUpload'>
-                    <label className='labelUpload' title='Upload'>
-                        <input 
-                            type ='file'
-                            hidden
-                            onChange ={e => onInputFileChange(e)}
-                        />
-                            Select File
-                        </label>
-                        <span className='fileNameSpan'>{state.fileData.fileName}</span>
-                </div>
+            <form onSubmit={handleSubmit} className='form'>
+            {
+                DataStructure.map(eachDetail => {
+                    return (
+                        <div key ={eachDetail.name}>
+                            <Input
+                                details  ={eachDetail}
+                                changed  ={handleChange} 
+                                fileChanged = {handleFileChange}
+                                value    ={values[eachDetail.name] || ''}   
+                            />
+                            {errors[eachDetail.name] && (
+                                <p className="is-danger">{errors[eachDetail.name]}</p>
+                            )}   
+                        </div> 
+                    )           
+                })
+            }
+            <div className='formBottom'>
+                    <Button
+                        title   ='Add' 
+                        type    ='Submit'
+                    />
             </div>
-
-            <InputForm 
-                dataStructure= {state.dataStructure} 
-                data= {state.fileData} 
-                onInputChangeHandler= { e=> onInputChangeHandler(e)}
-                onAddHandler = {onAddFileHandler}
-                hideAddButton = {state.hideAddButton}
-            /> 
+            </form>
         </Fragment>
     )
 
