@@ -6,13 +6,7 @@ export const DataStructure = [
         config: {
             type: 'file',
             placeholder: 'File'
-        },
-        value: '',
-        validation: {
-          required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'title',
@@ -21,13 +15,7 @@ export const DataStructure = [
         config: {
             type: 'text',
             placeholder: 'Title'
-        },
-        value: '',
-        validation: {
-          required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'description',
@@ -36,12 +24,6 @@ export const DataStructure = [
         config: {
             type: 'text',
             placeholder: 'Add some description about the file'
-        },
-        value: '',
-        validation: {
-            required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     }
 ] 

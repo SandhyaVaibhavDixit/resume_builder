@@ -10,14 +10,14 @@ const useForm = (callback, dataStructure) => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      callback();
-      setValues({});
+      callback(values);
     }
-  }, [errors]);
+  }, [errors, isSubmitting, values, callback]);
 
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
-    setErrors(validate(values, dataStructure));
+    const errors = validate(values, dataStructure);
+    setErrors(errors);
     setIsSubmitting(true);
   };
 
