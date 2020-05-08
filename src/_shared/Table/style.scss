@@ -18,7 +18,7 @@ $border : 2px solid #eee ;
         border-bottom: $border;
     }
 
-    .deleteButton {
+    .delete-button {
         float: left;
         border: 0;
         background: transparent;
@@ -33,8 +33,8 @@ $border : 2px solid #eee ;
         }
     }
     
-    .deleteButton > img,
-    .deleteButton > span {
+    .delete-button > img,
+    .delete-button > span {
       vertical-align: middle;
     }
 }   

@@ -1,11 +1,12 @@
-export const DataStructure = [
+export const FormInputs = [
     {
         name: 'name',
         label: 'Fullname',
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Your Full Name'
+            placeholder: 'Your Full Name',
+            tabIndex: '1'
         },
         value: '',
         validation: {
@@ -20,7 +21,8 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Location'
+            placeholder: 'Location',
+            tabIndex: '2'
         },
         value: '',
         validation: {
@@ -35,7 +37,8 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Zip Code'
+            placeholder: 'Zip Code',
+            tabIndex: '3'
         },
         value: '',
         validation: {
@@ -53,7 +56,8 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Country'
+            placeholder: 'Country',
+            tabIndex: '4'
         },
         value: '',
         validation: {
@@ -71,7 +75,8 @@ export const DataStructure = [
               { value: 'male', text: 'Male' },
               { value: 'female', text: 'Female' },
               { value:  'other', text: 'Other' }
-            ]
+            ],
+            tabIndex: '5'
           },
           value: 'Male',
           validation: {},
@@ -83,7 +88,8 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'date',
-            placeholder: 'mm / dd / yyyy'
+            placeholder: 'mm / dd / yyyy',
+            tabIndex: '6'
         },
         value: '',
         validation: {
@@ -99,7 +105,8 @@ export const DataStructure = [
         type: 'input',
         config: {
           type: 'email',
-          placeholder: 'Your E-Mail'
+          placeholder: 'Your E-Mail',
+          tabIndex: '7'
         },
         value: '',
         validation: {
@@ -115,7 +122,8 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Phone'
+            placeholder: 'Phone',
+            tabIndex: '8'
         },
         value: '',
         validation: {
@@ -132,7 +140,8 @@ export const DataStructure = [
         label: 'Permanent Address',
         type: 'textarea',
         config: {
-            placeholder: 'Provide your Permanent Address'
+            placeholder: 'Provide your Permanent Address',
+            tabIndex: '9'
         },
         value: '',
         validation: {
@@ -146,7 +155,8 @@ export const DataStructure = [
         label: 'Local Address',
         type: 'textarea',
         config: {
-            placeholder: 'Provide your Local Address'
+            placeholder: 'Provide your Local Address',
+            tabIndex: '10'
         },
         value: '',
         validation: {

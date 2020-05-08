@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from '../../_shared/Input';
-import { DataStructure } from '../../_shared/FormStructure/PersonalDetails';
+import { FormInputs } from '../../_shared/FormStructure/PersonalDetails';
 import { CheckValidity } from '../../_utils/CheckValidity';
 import { ProfileImage } from './ProfileImage';
 
@@ -8,43 +8,43 @@ import './style.scss';
 
 export const PersonalDetails = () => {
     
-    const [personalDetails, setPersonalDetails] = useState(DataStructure);
+    const [formInputs, setformInputs] = useState(FormInputs);
 
-    const updatePersonaldetails = (name, value ) =>{
-        const updatedPersonalDetails = personalDetails.map( detail => {
-            if (detail.name === name){
+    const updateFormInputs = (name, value ) =>{
+        const updatedformInputs = formInputs.map( formInput => {
+            if (formInput.name === name){
 
-                detail.value = value;
-                detail.valid = CheckValidity(
+                formInput.value = value;
+                formInput.valid = CheckValidity(
                     value,
-                    detail.validation
+                    formInput.validation
                 );
 
-                detail.touched= true
+                formInput.touched= true
             };
 
-            return detail;
+            return formInput;
         });
         
-        setPersonalDetails(updatedPersonalDetails);
+        setformInputs(updatedformInputs);
     }
 
     const onInputChangedHandler = (e) => {
         const {name, value} = e.target;
-        updatePersonaldetails(name, value);
+        updateFormInputs(name, value);
     }
 
     const renderForm = (
         <div className='form'>
-          { personalDetails.map(eachDetail => {
+          { formInputs.map(formInput => {
                 return (<Input
-                            key            ={eachDetail.name}
-                            details        ={eachDetail}       
-                            isValid        ={eachDetail.valid}
-                            value          ={eachDetail.value}
-                            touched        ={eachDetail.touched}     
-                            shouldValidate ={eachDetail.validation}
-                            changed ={e => onInputChangedHandler(e)}
+                            key            ={formInput.name}
+                            formInput      ={formInput}       
+                            isValid        ={formInput.valid}
+                            value          ={formInput.value}
+                            touched        ={formInput.touched}     
+                            shouldValidate ={formInput.validation}
+                            onChange       ={e => onInputChangedHandler(e)}
                         />
                     );
                 })
@@ -53,11 +53,11 @@ export const PersonalDetails = () => {
       );
       
     return(
-        <div className='personalDetails row'>
-            <div className='detailsDiv'>
+        <div className='personal-details row'>
+            <div className='details-div'>
                 { renderForm }
             </div>
-            <div className='profileImageDiv'>
+            <div className='profile-image-div'>
                 <ProfileImage />
             </div>
         </div>

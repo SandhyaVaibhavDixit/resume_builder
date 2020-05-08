@@ -46,7 +46,7 @@ export const Form = () => {
     );
 
     return(
-        <div className='mainForm'>
+        <div className='main-form'>
             <h2>Candidate Details Form</h2>
             { renderSections }   
         </div>

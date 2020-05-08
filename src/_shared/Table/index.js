@@ -17,7 +17,7 @@ export const Table = (props) => {
     const renderDeleteAction = (rowKey) =>{
         return(
             <button
-                className="deleteButton"
+                className="delete-button"
                 onClick={() => onDelete(rowKey)}>
                 <img
                     src ={DeleteIcon}

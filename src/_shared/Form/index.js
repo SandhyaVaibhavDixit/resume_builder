@@ -1,51 +1,47 @@
 import React, { Fragment, useCallback } from 'react';
 
-import { Input } from "../../../_shared/Input"; 
-import { Button } from '../../../_shared/Button';
-import { FormInputs } from '../../../_shared/FormStructure/AttachDocumentDetails';
+import { Input } from "../Input"; 
+import { Button } from '../Button';
 
-import useForm from '../../../_utils/useForm';
-import { generateKey } from '../../../_utils/generateKey';
+import useForm from '../../_utils/useForm';
+import { generateKey } from '../../_utils/generateKey';
 
-export const AddFileForm = ({ fileList, updateParentState, toggleModal }) => {
+export const AddForm = ({formInputs, dataList, updateParentState, toggleModal }) => {
 
     const onSubmit = useCallback((values) => {
 //        console.log('Adding function again')
-        const updatedFileDataList = [
-            ...fileList,
+        const updatedDataList = [
+            ...dataList,
             {   
                 key: generateKey(1, 100),
-                url: (values.file && URL.createObjectURL(values.file)) || null,
                 ...values
             }
         ];
 
-        updateParentState({fileList : updatedFileDataList});
+        updateParentState({dataList : updatedDataList});
         toggleModal();
-    }, [updateParentState, toggleModal, fileList]);
+    }, [updateParentState, toggleModal, dataList]);
 
     const {
         values,
         errors,
         handleChange,
-        handleFileChange,
         handleSubmit,
-    } = useForm(onSubmit, FormInputs);
+    } = useForm(onSubmit, formInputs);
 
-//    console.log('Rendering');
+//   console.log('Rendering');
 
     return (
         <Fragment>
             <form onSubmit={handleSubmit} className='form'>
                 {
-                    FormInputs.map(formInput => {
+                    formInputs.map(formInput => {
                         return (
                             <div key={formInput.name}>
                                 <Input
-                                    formInput    ={formInput}
-                                    onChange     ={handleChange}
-                                    onFileChange ={handleFileChange}
-                                    value        ={values[formInput.name] || ''}
+                                    formInput ={formInput}
+                                    onChange  ={handleChange}
+                                    value     ={values[formInput.name] || ''}
                                 />
                                 {errors[formInput.name] && (
                                     <p className="is-danger">{errors[formInput.name]}</p>

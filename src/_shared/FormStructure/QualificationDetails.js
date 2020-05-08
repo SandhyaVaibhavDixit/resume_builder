@@ -1,20 +1,20 @@
-export const DataStructure = [
+export const FormInputs = [
     {
         name: 'qualificationLevel',
         label: 'Qualification Level',
         type: 'select',
         config: {
             options: [
+              { value: '',   text:'Select'},
               { value: 'Tenth Level', text: 'Tenth Level' },
               { value: 'Twelth Level', text: 'Twelth Level' },
               { value: 'Diploma', text: 'Diploma' },
               { value: 'Graduate Level', text: 'Graduate Level' },
               { value: 'Post Graduate Level', text: 'Post Graduate Level' },
               { value: 'Doctrate', text: 'Doctrate' }
-            ]
-          },
-          validation: {},
-          valid: true
+            ],
+            tabIndex: '1'
+          }
     },
     {
         name: 'universityBoard',
@@ -22,13 +22,9 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'University / Board'
-        },
-        validation: {
-          required: true
-        }, 
-        valid: false,
-        touched: false
+            placeholder: 'University / Board',
+            tabIndex: '2'
+        }
     },
     {
         name: 'yearOfPass',
@@ -36,16 +32,15 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Year of pass e.g. 2020'
+            placeholder: 'Year of pass e.g. 2020',
+            tabIndex: '3'
         },
         validation: {
           required: true,
           minLength: 4,
           maxLength: 4,
           isNumeric: true
-        }, 
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'resultClassification',
@@ -53,14 +48,14 @@ export const DataStructure = [
         type: 'select',
         config: {
             options: [
+              { value: '',   text:'Select'},
               { value: 'Third Class', text: 'Third Class' },
               { value: 'Second Class', text: 'Second Class' },
               { value: 'First Class', text: 'First Class' },
               { value: 'Distiction', text: 'Distiction' },
-            ]
-          },
-          validation: {},
-          valid: true
+            ],
+            tabIndex: '4'
+          }
     },
     {
         name: 'institute',
@@ -68,13 +63,9 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Name of the institute'
-        },
-        validation: {
-          required: true
-        }, 
-        valid: false,
-        touched: false
+            placeholder: 'Name of the institute',
+            tabIndex: '5'
+        }
     },
     {
         name: 'subject',
@@ -82,13 +73,9 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Enter Subject'
-        },
-        validation: {
-          required: true
-        }, 
-        valid: false,
-        touched: false
+            placeholder: 'Enter Subject',
+            tabIndex: '6'
+        }
     },
     {
         name: 'percentageOfMark',
@@ -96,13 +83,12 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Percentage of Mark'
+            placeholder: 'Percentage of Mark',
+            tabIndex: '7'
         },
         validation: {
           required: true,
           isFloat: true
-        }, 
-        valid: false,
-        touched: false
+        }
     }
 ]

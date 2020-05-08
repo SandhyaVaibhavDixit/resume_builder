@@ -1,17 +1,13 @@
-export const DataStructure = [
+export const FormInputs = [
     {
         name: 'company',
         label: 'Company',
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Name of the company'
-        },
-        validation: {
-          required: true
-        }, 
-        valid: false,
-        touched: false
+            placeholder: 'Name of the company',
+            tabIndex: '1'
+        }
     },
     {
         name: 'post',
@@ -19,13 +15,9 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Name of the post'
-        },
-        validation: {
-          required: true
-        }, 
-        valid: false,
-        touched: false
+            placeholder: 'Name of the post',
+            tabIndex: '2'
+        }
     },
     {
         name: 'duration',
@@ -33,12 +25,8 @@ export const DataStructure = [
         type: 'input',
         config: {
             type: 'text',
-            placeholder: 'Ex: 2 years and 3 months, 2 months, 16 days'
-        },
-        validation: {
-           required: true
-        }, 
-        valid: false,
-        touched: false
+            placeholder: 'Ex: 2 years and 3 months, 2 months, 16 days',
+            tabIndex: '3'
+        }
     }
 ]

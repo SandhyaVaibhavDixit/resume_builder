@@ -52,10 +52,10 @@ export const ProfileImage = () => {
     }
 
     return(
-        <div className='mainDiv'>
+        <div className='main-div'>
             {renderProfileImage()}
             <br/>
-            <label className='labelUpload' title="Select image">  
+            <label className='label-upload' title="Select image">  
                 <input 
                     hidden
                     type     ='file'

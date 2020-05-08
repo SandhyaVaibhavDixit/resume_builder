@@ -4,11 +4,11 @@ import { Textarea } from '../Textarea';
 import './style.scss';
 
 export const Input = ( props ) => {
-    const { isValid, touched, shouldValidate, changed, value, fileChanged } = props;
-    const { name, label, type, config } = props.details;
+    const { isValid, touched, shouldValidate, value, onChange, onFileChange } = props;
+    const { name, label, type, config } = props.formInput;
 
     let inputElement = null;
-    let inputClasses = ['inputElement'];
+    let inputClasses = ['input-element'];
 
     if (!isValid && touched && shouldValidate)  {
         inputClasses.push('invalid');
@@ -20,9 +20,9 @@ export const Input = ( props ) => {
             inputElement = <Textarea 
                                 name    ={name} 
                                 value   ={value}
-                                classes = {inputClasses}
-                                config  = {config}
-                                changed ={changed}
+                                classes ={inputClasses}
+                                config  ={config}
+                                changed ={onChange}
                             />  
             break;
         case ( 'select' ):
@@ -31,21 +31,21 @@ export const Input = ( props ) => {
                                 value   ={value}
                                 classes = {inputClasses}
                                 config  = {config}
-                                changed ={changed}
+                                changed ={onChange}
                             />  
             break;
         case ( 'file' ): 
-            inputElement = <div className='fileUpload'>
+            inputElement = <div className='file-upload'>
                             <br></br>
-                            <label className='labelUpload' title='Upload'>
+                            <label className='label-upload' title='Upload'>
                                 <input 
                                     type ='file'
                                     hidden
-                                    onChange ={fileChanged}
+                                    onChange ={onFileChange}
                                 />
                                     Select File
                                 </label>
-                                <span className='fileNameSpan'>{value}</span>
+                                <span className='file-name-span'>{value}</span>
                         </div>
             break;
         case ( 'input' ):
@@ -56,7 +56,7 @@ export const Input = ( props ) => {
                                 className   ={inputClasses.join(' ')}
                                 {...config}
                                 value       ={value}
-                                onChange    ={changed} 
+                                onChange    ={onChange} 
                             />
         }
 

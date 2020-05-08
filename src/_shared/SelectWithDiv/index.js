@@ -8,7 +8,7 @@ export const SelectWithDiv = (props) => {
     const { name, label, config, valid, touched} = props.details;
   
     const [isDropDown, setIsDropDown] = useState(false);
-    let dropDownClass = ['noContent'];
+    let dropDownClass = ['no-content'];
     let arrow = <img src={DownIcon} className='arrow' alt='Select'></img> ;
     
     let selectedValue = value;
@@ -37,11 +37,11 @@ export const SelectWithDiv = (props) => {
     }
 
     if (isDropDown){
-        dropDownClass= ['dropContent'];
+        dropDownClass= ['drop-content'];
         arrow = <img src={UpIcon} alt='Select'></img> ;
     }
     else {
-        dropDownClass = ['noContent'];
+        dropDownClass = ['no-content'];
     }
     
     let divClass = ['dropdown'];

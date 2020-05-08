@@ -1,4 +1,4 @@
-export const DataStructure = [
+export const FormInputs = [
     {
         name: 'fileName',
         label: 'File',

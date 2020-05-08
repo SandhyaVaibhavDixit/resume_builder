@@ -37,21 +37,21 @@ export const AttachDocumentDetails = () => {
     const getResultView = () => {
         const hasRows = (state.fileList && state.fileList.length !== 0);
         if (hasRows === true) {
-            return (state.fileList.map(eachFile => {
+            return (state.fileList.map(file => {
                 return (
-                    <div className="fileList" key={eachFile.key}>
-                        <div className="fileTitle">
-                            <span><b>{eachFile.title}</b></span><br />
-                            <span>{eachFile.description} </span>
+                    <div className="file-list" key={file.key}>
+                        <div className="file-title">
+                            <span><b>{file.title}</b></span><br />
+                            <span>{file.description} </span>
 
                         </div>
-                        <div className='otherDiv'>
-                            <div onClick={() => onFileLoadHanlder(eachFile.url)}
+                        <div className='other-div'>
+                            <div onClick={() => onFileLoadHanlder(file.url)}
                                 alt='View File'>View File</div>
                         </div>
-                        <div className="otherDiv">
+                        <div className="other-div">
                             <div title='Delete'
-                                onClick={() => onDeleteHandler(eachFile.key)} >Delete </div>
+                                onClick={() => onDeleteHandler(file.key)} >Delete </div>
                         </div>
                     </div>
                 )
@@ -60,7 +60,7 @@ export const AttachDocumentDetails = () => {
     }
 
     return (
-        <div className='attachContainer'>
+        <div className='attach-container'>
             {getResultView()}
             <Button
                 title="Add File"

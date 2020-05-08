@@ -26,7 +26,7 @@ export const CheckValidity = ( value, rules ) => {
         isValid = pattern.test( value ) && isValid
     }
 
-    if( rules.isFloat ){
+    if ( rules.isFloat ){
         const pattern = /^\d+(\.\d{1,2})?$/;
         //for strict float /^\d+\.\d{0,2}$/;
         isValid = pattern.test( value ) && isValid

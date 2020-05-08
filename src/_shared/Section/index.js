@@ -8,7 +8,7 @@ export const Section = (props) => {
         <div className="section">
             <div className="section_title">
                <p className="title">{title}</p>
-               <p className="subTitle">{subTitle}</p>
+               <p className="sub-title">{subTitle}</p>
             </div>
             <div className="section_content">
                 {children}
