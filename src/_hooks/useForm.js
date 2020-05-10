@@ -14,7 +14,7 @@ const useForm = (callback, formInputs) => {
     }
   }, [errors, isSubmitting, values, callback]);
 
-  const handleSubmit = (event) => {
+  const onSubmit = (event) => {
     if (event) event.preventDefault();
 
     const errors = validate(values, formInputs);
@@ -23,7 +23,7 @@ const useForm = (callback, formInputs) => {
     setIsSubmitting(true);
   };
 
-  const handleFileChange = (event) => {
+  const onFileChange = (event) => {
     event.persist();
     
     const file = event.target.files[0];
@@ -34,16 +34,16 @@ const useForm = (callback, formInputs) => {
     }
   };
 
-  const handleChange = (event) => {
+  const onChange = (event) => {
     event.persist();
     
     setValues(values => ({ ...values, [event.target.name]: event.target.value }));
   };
 
   return {
-    handleChange,
-    handleFileChange,
-    handleSubmit,
+    onChange,
+    onFileChange,
+    onSubmit,
     values,
     errors,
   }

@@ -1,45 +1,54 @@
 import React from 'react';
-import { PersonalDetails } from '../../components/PersonalDetails';
-import { ExperienceDetails } from '../../components/ExperienceDetails';
-import { QualificationDetails } from '../../components/QualificationDetails';
-import { AttachDocumentDetails } from '../../components/AttachDocumentDetails';
+import { PersonalInformationForm } from '../../components/PersonalInformationForm';
+import { UserInformationForm } from '../../components/UserInformationForm';
+import { AttachDocumentForm } from '../../components/AttachDocumentForm';
+
+import { ExperienceFormInputs } from '../../_shared/FormStructure/ExperienceFormInputs';
+import { QualificationFormInputs } from '../../_shared/FormStructure/QualificationFormInputs';
+
 import { Section } from '../../_shared/Section';
 
-import './style.scss';
+import './index.scss';
 
 export const Form = () => {
     const sections = [
         {
-            title: 'Personal Details',
-            subTitle: 'All fields are compulsary',
-            component: <PersonalDetails/> 
+            title: 'Personal Information',
+            subTitle: 'All fields are compulsary.',
+            component: <PersonalInformationForm/> 
         },
         {
-            title: 'Qualification Details',
-            subTitle: 'Add all your previous work experience',
-            component: <QualificationDetails/>
+            title: 'Educational Qualification',
+            subTitle: 'Add all your educational qualifications.',
+            component: <UserInformationForm 
+                            formInputs={QualificationFormInputs} 
+                            btnTitle='Add Qualification'
+                            containerClassName='qualification-container'/>
         },
         {
             title: 'Experience Details',
-            subTitle: 'Add all your educational qualifications',
-            component: <ExperienceDetails/>
+            subTitle: 'Add all your previous work experience.',
+            component: <UserInformationForm 
+                            formInputs={ExperienceFormInputs} 
+                            btnTitle='Add Experience'
+                            containerClassName='experience-container'/>
         },
         {
             title: 'Attach Documents',
-            subTitle: 'Attach all documents to prove the details you provided (Ex. copy of voter ID, Degree certificates, Document to prove work experience, etc)',
-            component: <AttachDocumentDetails/>
+            subTitle: 'Attach all documents to prove the details you provided (Ex. copy of voter ID, Degree certificates, Document to prove work experience, etc).',
+            component: <AttachDocumentForm/>
         }
     ];
 
     const renderSections = (
-            sections.map( eachSection => {
+            sections.map( section => {
                 return (
                     <Section 
-                        key      ={eachSection.title}
-                        title    ={eachSection.title} 
-                        subTitle ={eachSection.subTitle}>
+                        key      ={section.title}
+                        title    ={section.title} 
+                        subTitle ={section.subTitle}>
 
-                        {eachSection.component}
+                        {section.component}
                     </Section>
                 )
             })

@@ -1,20 +1,20 @@
 import React from 'react';
 
 export const Select = (props) => {
-    const {name, value, classes, config, changed} = props;
-    
+    const {name, value, classes, config, onChange} = props;
+    const { options } = config;
     return(
         <select
             key       ={name}
             name      ={name}
             className ={classes.join(' ')}
             value     ={value}
-            onChange  ={changed}>
+            onChange  ={onChange}>
 
-            {config.options.map(option => (
+            {options.map(option => (
                 <option 
-                    key={option.value} 
-                    value={option.value}>
+                    key     ={option.value} 
+                    value   ={option.value}>
 
                     {option.text}
                 </option>

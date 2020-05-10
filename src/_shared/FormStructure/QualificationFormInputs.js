@@ -1,8 +1,8 @@
-export const FormInputs = [
+export const QualificationFormInputs = [
     {
         name: 'qualificationLevel',
         label: 'Qualification Level',
-        type: 'select',
+        elementType: 'select',
         config: {
             options: [
               { value: '',   text:'Select'},
@@ -12,28 +12,25 @@ export const FormInputs = [
               { value: 'Graduate Level', text: 'Graduate Level' },
               { value: 'Post Graduate Level', text: 'Post Graduate Level' },
               { value: 'Doctrate', text: 'Doctrate' }
-            ],
-            tabIndex: '1'
+            ]
           }
     },
     {
         name: 'universityBoard',
         label: 'University / Board',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
-            placeholder: 'University / Board',
-            tabIndex: '2'
+            placeholder: 'University / Board'
         }
     },
     {
         name: 'yearOfPass',
         label: 'Year of Pass',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
-            placeholder: 'Year of pass e.g. 2020',
-            tabIndex: '3'
+            placeholder: 'Year of pass e.g. 2020'
         },
         validation: {
           required: true,
@@ -45,7 +42,7 @@ export const FormInputs = [
     {
         name: 'resultClassification',
         label: 'Result Classification',
-        type: 'select',
+        elementType: 'select',
         config: {
             options: [
               { value: '',   text:'Select'},
@@ -53,38 +50,34 @@ export const FormInputs = [
               { value: 'Second Class', text: 'Second Class' },
               { value: 'First Class', text: 'First Class' },
               { value: 'Distiction', text: 'Distiction' },
-            ],
-            tabIndex: '4'
+            ]
           }
     },
     {
         name: 'institute',
         label: 'Institute',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
-            placeholder: 'Name of the institute',
-            tabIndex: '5'
+            placeholder: 'Name of the institute'
         }
     },
     {
         name: 'subject',
         label: 'Subject',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
-            placeholder: 'Enter Subject',
-            tabIndex: '6'
+            placeholder: 'Enter Subject'
         }
     },
     {
         name: 'percentageOfMark',
         label: 'Percentage of Mark',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
-            placeholder: 'Percentage of Mark',
-            tabIndex: '7'
+            placeholder: 'Percentage of Mark'
         },
         validation: {
           required: true,

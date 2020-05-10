@@ -2,15 +2,14 @@ import React, { Fragment, useCallback } from 'react';
 
 import { Input } from "../../../_shared/Input"; 
 import { Button } from '../../../_shared/Button';
-import { FormInputs } from '../../../_shared/FormStructure/AttachDocumentDetails';
+import { AttachDocumentFormInputs as formInputs } from '../../../_shared/FormStructure/AttachDocumentFormInputs';
 
-import useForm from '../../../_utils/useForm';
+import useForm from '../../../_hooks/useForm';
 import { generateKey } from '../../../_utils/generateKey';
 
 export const AddFileForm = ({ fileList, updateParentState, toggleModal }) => {
 
-    const onSubmit = useCallback((values) => {
-//        console.log('Adding function again')
+    const onFormSubmit = useCallback((values) => {
         const updatedFileDataList = [
             ...fileList,
             {   
@@ -27,24 +26,22 @@ export const AddFileForm = ({ fileList, updateParentState, toggleModal }) => {
     const {
         values,
         errors,
-        handleChange,
-        handleFileChange,
-        handleSubmit,
-    } = useForm(onSubmit, FormInputs);
-
-//    console.log('Rendering');
+        onChange,
+        onFileChange,
+        onSubmit,
+    } = useForm(onFormSubmit, formInputs);
 
     return (
         <Fragment>
-            <form onSubmit={handleSubmit} className='form'>
+            <form onSubmit={onSubmit} className='form'>
                 {
-                    FormInputs.map(formInput => {
+                    formInputs.map(formInput => {
                         return (
                             <div key={formInput.name}>
                                 <Input
                                     formInput    ={formInput}
-                                    onChange     ={handleChange}
-                                    onFileChange ={handleFileChange}
+                                    onChange     ={onChange}
+                                    onFileChange ={onFileChange}
                                     value        ={values[formInput.name] || ''}
                                 />
                                 {errors[formInput.name] && (

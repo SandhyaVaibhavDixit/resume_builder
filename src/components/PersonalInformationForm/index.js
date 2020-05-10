@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Input } from '../../_shared/Input';
-import { FormInputs } from '../../_shared/FormStructure/PersonalDetails';
+import { PersonalInformationFormInputs } from '../../_shared/FormStructure/PersonalInformationFormInputs';
 import { CheckValidity } from '../../_utils/CheckValidity';
 import { ProfileImage } from './ProfileImage';
 
-import './style.scss';
+import './index.scss';
 
-export const PersonalDetails = () => {
+export const PersonalInformationForm = () => {
     
-    const [formInputs, setformInputs] = useState(FormInputs);
+    const [formInputs, setformInputs] = useState(PersonalInformationFormInputs);
 
     const updateFormInputs = (name, value ) =>{
         const updatedformInputs = formInputs.map( formInput => {
@@ -40,9 +40,9 @@ export const PersonalDetails = () => {
                 return (<Input
                             key            ={formInput.name}
                             formInput      ={formInput}       
-                            isValid        ={formInput.valid}
                             value          ={formInput.value}
-                            touched        ={formInput.touched}     
+                            isValid        ={formInput.valid}
+                            isTouched      ={formInput.touched}     
                             shouldValidate ={formInput.validation}
                             onChange       ={e => onInputChangedHandler(e)}
                         />

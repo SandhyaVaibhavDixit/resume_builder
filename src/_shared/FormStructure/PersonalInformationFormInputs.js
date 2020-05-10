@@ -1,12 +1,11 @@
-export const FormInputs = [
+export const PersonalInformationFormInputs = [
     {
         name: 'name',
         label: 'Fullname',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Your Full Name',
-            tabIndex: '1'
         },
         value: '',
         validation: {
@@ -18,11 +17,10 @@ export const FormInputs = [
     {
         name: 'location',
         label: 'Location',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Location',
-            tabIndex: '2'
         },
         value: '',
         validation: {
@@ -34,11 +32,10 @@ export const FormInputs = [
     {
         name: 'zipcode',
         label: 'Zip Code',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Zip Code',
-            tabIndex: '3'
         },
         value: '',
         validation: {
@@ -53,11 +50,10 @@ export const FormInputs = [
     {
         name: 'nationality',
         label: 'Nationality',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Country',
-            tabIndex: '4'
         },
         value: '',
         validation: {
@@ -69,14 +65,13 @@ export const FormInputs = [
     {
         name: 'gender',
         label: 'Gender',
-        type: 'select',
+        elementType: 'select',
         config: {
             options: [
               { value: 'male', text: 'Male' },
               { value: 'female', text: 'Female' },
               { value:  'other', text: 'Other' }
-            ],
-            tabIndex: '5'
+            ]
           },
           value: 'Male',
           validation: {},
@@ -85,11 +80,10 @@ export const FormInputs = [
     {
         name: 'dateOfBirth',
         label: 'Date of Birth',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'date',
-            placeholder: 'mm / dd / yyyy',
-            tabIndex: '6'
+            placeholder: 'mm / dd / yyyy'
         },
         value: '',
         validation: {
@@ -102,11 +96,10 @@ export const FormInputs = [
     {
         name: 'email',
         label: 'E-mail',
-        type: 'input',
+        elementType: 'input',
         config: {
           type: 'email',
-          placeholder: 'Your E-Mail',
-          tabIndex: '7'
+          placeholder: 'Your E-Mail'
         },
         value: '',
         validation: {
@@ -119,11 +112,10 @@ export const FormInputs = [
     {
         name: 'mobile',
         label: 'Mobile',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
-            placeholder: 'Phone',
-            tabIndex: '8'
+            placeholder: 'Phone'
         },
         value: '',
         validation: {
@@ -138,10 +130,9 @@ export const FormInputs = [
     {
         name: 'permanentAddress',
         label: 'Permanent Address',
-        type: 'textarea',
+        elementType: 'textarea',
         config: {
-            placeholder: 'Provide your Permanent Address',
-            tabIndex: '9'
+            placeholder: 'Provide your Permanent Address'
         },
         value: '',
         validation: {
@@ -153,10 +144,9 @@ export const FormInputs = [
     {
         name: 'localAddress',
         label: 'Local Address',
-        type: 'textarea',
+        elementType: 'textarea',
         config: {
             placeholder: 'Provide your Local Address',
-            tabIndex: '10'
         },
         value: '',
         validation: {

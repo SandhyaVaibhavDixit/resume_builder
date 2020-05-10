@@ -1,17 +1,17 @@
-export const FormInputs = [
+export const AttachDocumentFormInputs = [
     {
         name: 'fileName',
         label: 'File',
-        type: 'file',
-        config: {
-            type: 'file',
+        elementType: 'file',
+        config: { 
+            elementType: 'file',
             placeholder: 'File'
         }
     },
     {
         name: 'title',
         label: 'Title',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Title'
@@ -20,9 +20,8 @@ export const FormInputs = [
     {
         name: 'description',
         label: 'Description',
-        type: 'textarea',
+        elementType: 'textarea',
         config: {
-            type: 'text',
             placeholder: 'Add some description about the file'
         }
     }

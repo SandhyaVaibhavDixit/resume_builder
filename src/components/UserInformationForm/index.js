@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
-import { FormInputs } from '../../_shared/FormStructure/ExperienceDetails';
 import { Modal } from '../../_shared/Modal';
 import { Table } from '../../_shared/Table';
 import { Button } from '../../_shared/Button';
 import { AddForm } from '../../_shared/Form';
 
-import './style.scss';
+import './index.scss';
 
-export const ExperienceDetails = () => {
+export const UserInformationForm = (props) => {
+    const { formInputs, btnTitle, containerClassName } = props;
 
+    const classes = ['container', containerClassName];
     const initialState = {
         dataList: [],
         showModal: false,
@@ -28,35 +29,35 @@ export const ExperienceDetails = () => {
 
     const onDeleteHandler = (key) => {
         //Remove by filter.
-        const updateddataList = state.dataList.filter(item => item.key !== key);
-        updateState({ dataList : updateddataList});
+        const updatedDataList = state.dataList.filter(item => item.key !== key);
+        updateState({ dataList : updatedDataList});
     }
 
 
     return (
-        <div className='exp-container'>
+        <div className={classes.join(' ')}>
             <Table
-                tableHeader ={FormInputs}
-                tableBody   ={state.dataList}
+                headerRows  ={formInputs}
+                rows        ={state.dataList}
                 onDelete    ={onDeleteHandler}/>
             <br></br>
             <Button
                 onClick ={onShowModalClick}
-                title   ='Add Experience'                
+                title   ={btnTitle}                
             />
 
             <Modal 
-                show    ={state.showModal}
+                show    ={state.showModal} 
                 onClose ={toggleModal}
-                title   ='Add Experience'>
+                title   ={btnTitle}>
 
                 <AddForm
-                    formInputs        ={FormInputs}
-                    dataList          ={state.dataList}
-                    updateParentState ={updateState}
-                    toggleModal       ={toggleModal}
+                    formInputs={formInputs}
+                    dataList={state.dataList}
+                    updateParentState={updateState}
+                    toggleModal={toggleModal}
                 />
-            
+
             </Modal>
 
         </div>

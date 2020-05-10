@@ -4,7 +4,7 @@ import { Modal } from '../../../_shared/Modal';
 import { verifyFile } from '../../../_utils/verifyFile';
 import defaultImage from '../../../_assets/images/user_default.png';
 
-import './style.scss';
+import './index.scss';
 
 export const ProfileImage = () => {
     const initialState = {

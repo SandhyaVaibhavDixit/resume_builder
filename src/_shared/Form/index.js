@@ -3,13 +3,13 @@ import React, { Fragment, useCallback } from 'react';
 import { Input } from "../Input"; 
 import { Button } from '../Button';
 
-import useForm from '../../_utils/useForm';
+import useForm from '../../_hooks/useForm';
+
 import { generateKey } from '../../_utils/generateKey';
 
 export const AddForm = ({formInputs, dataList, updateParentState, toggleModal }) => {
 
-    const onSubmit = useCallback((values) => {
-//        console.log('Adding function again')
+    const onFormSubmit = useCallback((values) => {
         const updatedDataList = [
             ...dataList,
             {   
@@ -25,22 +25,20 @@ export const AddForm = ({formInputs, dataList, updateParentState, toggleModal })
     const {
         values,
         errors,
-        handleChange,
-        handleSubmit,
-    } = useForm(onSubmit, formInputs);
-
-//   console.log('Rendering');
+        onChange,
+        onSubmit,
+    } = useForm(onFormSubmit, formInputs);
 
     return (
         <Fragment>
-            <form onSubmit={handleSubmit} className='form'>
+            <form onSubmit={onSubmit} className='form'>
                 {
                     formInputs.map(formInput => {
                         return (
-                            <div key={formInput.name}>
+                            <div key={formInput.name} className='form-div'>
                                 <Input
                                     formInput ={formInput}
-                                    onChange  ={handleChange}
+                                    onChange  ={onChange}
                                     value     ={values[formInput.name] || ''}
                                 />
                                 {errors[formInput.name] && (

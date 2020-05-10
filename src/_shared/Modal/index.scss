@@ -37,7 +37,7 @@
       
       .close-modal-btn {  
         cursor:     pointer;      
-        font-size:  20px;
+        font-size:  1.25rem;
         margin:     0;
         
         &:hover {
@@ -47,5 +47,13 @@
   }
   .modal-body {
     padding: 10px 15px;
+  }
+}
+
+
+@media (min-width: 600px) {
+  .modal {
+      width:      500px;
+      left:       calc(50% - 250px);
   }
 }

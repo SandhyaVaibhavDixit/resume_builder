@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './style.scss';
+import './index.scss';
 
 export const Section = (props) => {
     const { title, subTitle, children } = props
@@ -14,6 +14,5 @@ export const Section = (props) => {
                 {children}
             </div>          
         </div>
-      );
-    
+    );
 }

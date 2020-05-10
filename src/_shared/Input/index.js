@@ -1,20 +1,21 @@
 import React from 'react';
 import { Select } from '../Select';
 import { Textarea } from '../Textarea';
-import './style.scss';
+import './index.scss';
 
 export const Input = ( props ) => {
-    const { isValid, touched, shouldValidate, value, onChange, onFileChange } = props;
-    const { name, label, type, config } = props.formInput;
+    const { isValid, isTouched, shouldValidate, value, onChange, onFileChange } = props;
+    const { name, label, elementType, config } = props.formInput;
+    const { type, placeHolder } = config 
 
     let inputElement = null;
     let inputClasses = ['input-element'];
 
-    if (!isValid && touched && shouldValidate)  {
+    if (!(isValid) && isTouched && shouldValidate)  {
         inputClasses.push('invalid');
     }
 
-    switch ( type ) { 
+    switch ( elementType ) { 
         case ( 'textarea' ):
             inputClasses.push('textarea'); 
             inputElement = <Textarea 
@@ -22,7 +23,7 @@ export const Input = ( props ) => {
                                 value   ={value}
                                 classes ={inputClasses}
                                 config  ={config}
-                                changed ={onChange}
+                                onChange ={onChange}
                             />  
             break;
         case ( 'select' ):
@@ -31,7 +32,7 @@ export const Input = ( props ) => {
                                 value   ={value}
                                 classes = {inputClasses}
                                 config  = {config}
-                                changed ={onChange}
+                                onChange ={onChange}
                             />  
             break;
         case ( 'file' ): 
@@ -45,7 +46,7 @@ export const Input = ( props ) => {
                                 />
                                     Select File
                                 </label>
-                                <span className='file-name-span'>{value}</span>
+                                <span className='span-file-name'>{value}</span>
                         </div>
             break;
         case ( 'input' ):
@@ -54,7 +55,8 @@ export const Input = ( props ) => {
                                 key         ={name}
                                 name        ={name}
                                 className   ={inputClasses.join(' ')}
-                                {...config}
+                                type        ={type}
+                                placeholder ={placeHolder}
                                 value       ={value}
                                 onChange    ={onChange} 
                             />

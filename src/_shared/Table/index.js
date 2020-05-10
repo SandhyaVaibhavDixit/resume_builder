@@ -1,24 +1,25 @@
 import React from 'react';
 import DeleteIcon from '../../_assets/icons/delete.png';
-import './style.scss';
+import './index.scss';
 
 export const Table = (props) => {
-    const {tableHeader, tableBody, onDelete} = props;
+    const {headerRows, rows, onDelete} = props;
 
-    const hasRows = (tableBody &&  tableBody.length !== 0)
-    if(!hasRows) {
+    const hasRows = (rows &&  rows.length !== 0)
+    
+    if (!hasRows) {
         return null;
     };
 
-    const renderHeader = tableHeader.map(eachRow => {
-      return <td key={eachRow.name}><b>{eachRow.label}</b></td>
+    const renderHeader = headerRows.map(headerRow => {
+      return <td key={headerRow.name}><b>{headerRow.label}</b></td>
     });
 
     const renderDeleteAction = (rowKey) =>{
         return(
             <button
-                className="delete-button"
-                onClick={() => onDelete(rowKey)}>
+                className   ="delete-button"
+                onClick     ={() => onDelete(rowKey)}>
                 <img
                     src ={DeleteIcon}
                     alt ="Delete">
@@ -27,19 +28,19 @@ export const Table = (props) => {
         )
     }
 
-    const renderTableRows = tableBody.map(( eachRow, index) => {
-        return( 
-        <tr key={index}>
-            {tableHeader.map(header =>{
-                const { name } = header;
+    const renderRows = rows.map(( row, index) => {
+        return ( 
+                <tr key={index}>
+                    {headerRows.map(headerRow =>{
+                        const { name } = headerRow;
 
-                return(
-                    <td key={name}> {eachRow[name]} </td>
-                )
-             })
-            }
-            <td>{ renderDeleteAction(eachRow.key) }</td>
-        </tr>
+                        return(
+                            <td key={name}> {row[name]} </td>
+                        )
+                    })
+                    }
+                    <td>{ renderDeleteAction(row.key) }</td>
+                </tr>
         )
     })
     
@@ -52,7 +53,7 @@ export const Table = (props) => {
                 </tr>
             </thead>
             <tbody>
-                { renderTableRows }
+                { renderRows }
             </tbody>
         </table>
     )   

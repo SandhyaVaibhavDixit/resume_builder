@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 //import AvatarEditor from 'react-avatar-editor';
 import { Button } from '../Button';
-import './style.scss';
+import './index.scss';
 
 const AvatarEditor = require('react-avatar-editor').default;
 

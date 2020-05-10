@@ -1,32 +1,29 @@
-export const FormInputs = [
+export const ExperienceFormInputs = [
     {
         name: 'company',
         label: 'Company',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Name of the company',
-            tabIndex: '1'
         }
     },
     {
         name: 'post',
         label: 'Post',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Name of the post',
-            tabIndex: '2'
         }
     },
     {
         name: 'duration',
         label: 'Duration',
-        type: 'input',
+        elementType: 'input',
         config: {
             type: 'text',
             placeholder: 'Ex: 2 years and 3 months, 2 months, 16 days',
-            tabIndex: '3'
         }
     }
 ]

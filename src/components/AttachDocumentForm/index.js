@@ -4,9 +4,9 @@ import { Modal } from '../../_shared/Modal';
 
 import { AddFileForm } from './AddFileForm';
 
-import './style.scss';
+import './index.scss';
 
-export const AttachDocumentDetails = () => {
+export const AttachDocumentForm = () => {
 
     const initialSate = {
         showModal: false,
