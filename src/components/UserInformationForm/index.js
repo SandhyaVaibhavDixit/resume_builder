@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../_shared/Modal';
 import { Table } from '../../_shared/Table';
 import { Button } from '../../_shared/Button';
-import { AddForm } from '../../_shared/Form';
+import { AddForm } from '../../_shared/AddForm';
 
 import './index.scss';
 
