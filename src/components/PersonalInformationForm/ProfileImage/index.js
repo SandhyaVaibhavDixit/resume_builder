@@ -51,33 +51,49 @@ export const ProfileImage = () => {
         )
     }
 
-    return(
-        <div className='main-div'>
-            {renderProfileImage()}
-            <br/>
-            <label className='label-upload' title="Select image">  
-                <input 
-                    hidden
-                    type     ='file'
-                    name     ='profileImg'
-                    accept   ='image/png, image/jpeg, image/jpg'
-                    onChange ={onImageFileChangeHandler}
-                />
-                Select image
-            </label>
-            
-            <Modal 
-                show    ={showModal}
-                onClose ={toggleModal}
-                title   ='Crop'>
+    const renderLabel = () => (
+        <label className='label-upload' title="Select image">  
+        <input 
+            hidden
+            type     ='file'
+            name     ='profileImg'
+            accept   ='image/png, image/jpeg, image/jpg'
+            onChange ={onImageFileChangeHandler}
+        />
+            Select image
+        </label>
+    )
 
-                <ImageCrop 
-                    imagefile     ={imageData.selectedFile} 
-                    setEditorRef  ={setEditorRef} 
-                    onImageCrop   ={onImageCrop} 
-                />  
-                
-            </Modal>
+    const renderModel = () => (
+        <Modal 
+            show    ={showModal}
+            onClose ={toggleModal}
+            title   ='Crop'>
+
+            <ImageCrop 
+                imagefile     ={imageData.selectedFile} 
+                setEditorRef  ={setEditorRef} 
+                onImageCrop   ={onImageCrop} 
+            />  
+            
+        </Modal>
+    )
+
+    const renderForm = () => (
+        <div className='main-div'>
+            
+            { renderProfileImage() }
+
+            <br/>
+            { renderLabel() }
+            
+            { renderModel() }
+        </div>
+    )
+
+    return(
+        <div className='profile-image-div'>
+            { renderForm() }
         </div>
     );
 } 

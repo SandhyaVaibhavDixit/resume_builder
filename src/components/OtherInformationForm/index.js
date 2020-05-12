@@ -34,8 +34,21 @@ export const OtherInformationForm = (props) => {
         updateState({ dataList : updatedDataList});
     }
 
+    const renderModal = () => (
+        <Modal 
+            show    ={state.showModal} 
+            onClose ={toggleModal}
+            title   ={buttonTitle}>
 
-    return (
+            <AddForm
+                formInputs={formInputs}
+                dataList={state.dataList}
+                updateParentState={updateState}
+                toggleModal={toggleModal}
+            />
+        </Modal>
+    )
+    const renderForm = () => (
         <div className={classes.join(' ')}>
             <Table
                 headerRows  ={formInputs}
@@ -46,21 +59,11 @@ export const OtherInformationForm = (props) => {
                 onClick ={onShowModalClick}
                 title   ={buttonTitle}                
             />
-
-            <Modal 
-                show    ={state.showModal} 
-                onClose ={toggleModal}
-                title   ={buttonTitle}>
-
-                <AddForm
-                    formInputs={formInputs}
-                    dataList={state.dataList}
-                    updateParentState={updateState}
-                    toggleModal={toggleModal}
-                />
-
-            </Modal>
-
+            { renderModal() }
         </div>
-     );
+    );
+
+    return (
+         renderForm() 
+    );
 }

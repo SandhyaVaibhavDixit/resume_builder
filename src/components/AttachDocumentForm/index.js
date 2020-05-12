@@ -38,12 +38,11 @@ export const AttachDocumentForm = () => {
         const hasRows = (state.fileList && state.fileList.length !== 0);
         if (hasRows === true) {
             return (state.fileList.map(file => {
-                return (
+                const renderFileList = () => (
                     <div className="file-list" key={file.key}>
                         <div className="file-title">
                             <span><b>{file.title}</b></span><br />
                             <span>{file.description} </span>
-
                         </div>
                         <div className='other-div'>
                             <div onClick={() => onFileLoadHanlder(file.url)}
@@ -55,9 +54,27 @@ export const AttachDocumentForm = () => {
                         </div>
                     </div>
                 )
+
+                return (
+                    renderFileList()
+                )
             }))
         }
     }
+
+    const renderModal = () => (
+        <Modal
+            show={state.showModal}
+            onClose={toggleModal}
+            title='Add files'
+            >
+            <AddFileForm
+                fileList={state.fileList}
+                updateParentState={updateState}
+                toggleModal={toggleModal}
+            />
+        </Modal>
+    )
 
     return (
         <div className='attach-container'>
@@ -66,17 +83,7 @@ export const AttachDocumentForm = () => {
                 title="Add File"
                 onClick={onShowModalClick} />
 
-            <Modal
-                show={state.showModal}
-                onClose={toggleModal}
-                title='Add files'
-            >
-                <AddFileForm
-                    fileList={state.fileList}
-                    updateParentState={updateState}
-                    toggleModal={toggleModal}
-                />
-            </Modal>
+            { renderModal() }
         </div>
     );
 }
