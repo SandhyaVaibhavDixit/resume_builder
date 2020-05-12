@@ -29,12 +29,13 @@ export const AddForm = ({formInputs, dataList, updateParentState, toggleModal })
         onSubmit,
     } = useForm(onFormSubmit, formInputs);
 
-    return (
+
+    const renderForm = () => (
         <Fragment>
             <form onSubmit={onSubmit} className='form'>
                 {
                     formInputs.map(formInput => {
-                        return (
+                        const formElement = (
                             <div key={formInput.name} className='form-div'>
                                 <Input
                                     formInput ={formInput}
@@ -45,6 +46,10 @@ export const AddForm = ({formInputs, dataList, updateParentState, toggleModal })
                                     <p className="is-danger">{errors[formInput.name]}</p>
                                 )}
                             </div>
+                        );
+
+                        return (
+                            formElement
                         )
                     })
                 }
@@ -56,5 +61,9 @@ export const AddForm = ({formInputs, dataList, updateParentState, toggleModal })
                 </div>
             </form>
         </Fragment>
+    )
+    
+    return (
+         renderForm() 
     )
 }

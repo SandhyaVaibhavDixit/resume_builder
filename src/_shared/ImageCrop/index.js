@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 //import AvatarEditor from 'react-avatar-editor';
 import { Button } from '../Button';
 import './index.scss';
@@ -15,16 +15,19 @@ export const ImageCrop = (props) => {
         setScaleValue(value); 
     }
 
-    return (
+    const renderEditor = () => (
+        <div className='editor'>
+            <AvatarEditor 
+                image  ={imagefile}
+                border ={5}
+                scale  ={scaleValue}
+                rotate ={0}
+                ref    ={setEditorRef} />
+        </div>
+    );
+
+    const renderInputScale = () => (
         <div className='main'>
-            <div className='editor'>
-                <AvatarEditor 
-                    image  ={imagefile}
-                    border ={5}
-                    scale  ={scaleValue}
-                    rotate ={0}
-                    ref    ={setEditorRef} />
-            </div>
             <div> 
                 <input 
                     type      ='range'
@@ -33,7 +36,7 @@ export const ImageCrop = (props) => {
                     max       ='10'
                     className ='actions'
                     onChange  ={ e => onScaleChange(e)} />
-            </div>                                                                                     
+            </div>
             <div>
                 <Button
                     onClick ={onImageCrop}
@@ -41,5 +44,12 @@ export const ImageCrop = (props) => {
                 />
             </div>
         </div>
+    );
+
+    return (
+        <Fragment>
+            { renderEditor() }
+            { renderInputScale() }   
+        </Fragment>    
     );
 }

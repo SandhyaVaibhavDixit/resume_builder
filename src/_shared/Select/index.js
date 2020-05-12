@@ -3,7 +3,8 @@ import React from 'react';
 export const Select = (props) => {
     const {name, value, classes, config, onChange} = props;
     const { options } = config;
-    return(
+
+    const renderSelect = () => (
         <select
             key       ={name}
             name      ={name}
@@ -21,5 +22,9 @@ export const Select = (props) => {
             ))}
 
         </select>
+    );
+
+    return(
+        renderSelect()
     );
 }

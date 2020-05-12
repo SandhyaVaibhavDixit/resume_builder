@@ -11,11 +11,13 @@ export const Table = (props) => {
         return null;
     };
 
-    const renderHeader = headerRows.map(headerRow => {
-      return <td key={headerRow.name}><b>{headerRow.label}</b></td>
+    const renderHeader = headerRows.map( headerRow => {
+      return <td key={headerRow.name}
+                ><b>{headerRow.label}</b>
+            </td>
     });
 
-    const renderDeleteAction = (rowKey) =>{
+    const renderDeleteAction = (rowKey) => {
         return(
             <button
                 className   ="delete-button"
@@ -45,7 +47,7 @@ export const Table = (props) => {
         )
     })
     
-    return(
+    return (
         <table className='table'> 
             <thead>
                 <tr>

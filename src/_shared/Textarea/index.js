@@ -4,7 +4,7 @@ export const Textarea = (props) =>{
     const {name, value, classes, onChange} = props;
     const { placeHolder } = props.config 
 
-    return(
+    const textArea = () => (
         <textarea
             key         ={name}
             rows        ={5}
@@ -15,5 +15,9 @@ export const Textarea = (props) =>{
             value       ={value || ""}
             onChange    ={onChange}
         />
+    );
+
+    return (
+        textArea()
     );
 }   
