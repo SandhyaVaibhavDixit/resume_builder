@@ -23,7 +23,7 @@ export const ProfileImage = () => {
         setShowModal(!showModal);
     }
 
-    const onCrop = () => {
+    const onImageCrop = () => {
         if ( imageEditor !== null ){
             const url = imageEditor.getImageScaledToCanvas().toDataURL();     
             setImageData({ userProfileImg : url });
@@ -33,9 +33,9 @@ export const ProfileImage = () => {
    
     const onImageFileChangeHandler = (e) => {
         const file = e.target.files[0];
-        const acceptedFileExtension = ['png', 'jpg', 'jpeg', 'gif'];
+        const acceptedFileExtensions = ['png', 'jpg', 'jpeg', 'gif'];
 
-        if( file !== undefined && verifyFile(file, acceptedFileExtension)){
+        if( file !== undefined && verifyFile(file, acceptedFileExtensions)){
             setImageData({ selectedFile : file });
             setShowModal(true);
         }
@@ -74,7 +74,7 @@ export const ProfileImage = () => {
                 <ImageCrop 
                     imagefile     ={imageData.selectedFile} 
                     setEditorRef  ={setEditorRef} 
-                    onCrop        ={onCrop} 
+                    onImageCrop   ={onImageCrop} 
                 />  
                 
             </Modal>

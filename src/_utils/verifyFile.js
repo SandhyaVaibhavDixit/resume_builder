@@ -1,9 +1,9 @@
-export const verifyFile = (file, acceptedFileExtension) => {
+export const verifyFile = (file, acceptedFileExtensions) => {
     const { name } = file;
 
-    var filextenion = name.substring(name.lastIndexOf(".") + 1);
+    var filExtenion = name.substring(name.lastIndexOf(".") + 1);
 
-    if (acceptedFileExtension.includes(filextenion)){
+    if (acceptedFileExtensions.includes(filExtenion)){
         return true;
     }
 

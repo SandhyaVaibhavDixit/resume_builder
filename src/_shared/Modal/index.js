@@ -9,11 +9,17 @@ export const Modal = (props) => {
 
     return (
         <>
-            { show ? <div onClick={onClose} className="back-drop"></div> : null }
+            { show ? <div 
+                        onClick ={onClose} 
+                        className="back-drop"></div> 
+                    : null 
+            }
             <div className="modal-wrapper">
                 <div className="modal-header">
                     <h3>{title}</h3>
-                    <span className="close-modal-btn" onClick={onClose}>×</span>
+                    <span 
+                        className="close-modal-btn" 
+                        onClick={onClose}>×</span>
                 </div>
                 <div className="modal-body">
                         {children}

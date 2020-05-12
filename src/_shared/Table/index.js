@@ -28,15 +28,16 @@ export const Table = (props) => {
         )
     }
 
-    const renderRows = rows.map(( row, index) => {
+    const renderRows = rows.map( row => {
         return ( 
-                <tr key={index}>
-                    {headerRows.map(headerRow =>{
-                        const { name } = headerRow;
+                <tr key={row.key}>
+                    {
+                        headerRows.map(headerRow =>{
+                            const { name } = headerRow;
 
-                        return(
-                            <td key={name}> {row[name]} </td>
-                        )
+                            return(
+                                <td key={name}> {row[name]} </td>
+                            )
                     })
                     }
                     <td>{ renderDeleteAction(row.key) }</td>

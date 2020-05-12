@@ -6,7 +6,7 @@ import './index.scss';
 const AvatarEditor = require('react-avatar-editor').default;
 
 export const ImageCrop = (props) => {
-   const { imagefile, setEditorRef, onCrop} = props;
+   const { imagefile, setEditorRef, onImageCrop} = props;
 
     const [ scaleValue, setScaleValue ] = useState(1);
 
@@ -36,7 +36,7 @@ export const ImageCrop = (props) => {
             </div>                                                                                     
             <div>
                 <Button
-                    onClick ={onCrop}
+                    onClick ={onImageCrop}
                     title   ='Crop'                
                 />
             </div>

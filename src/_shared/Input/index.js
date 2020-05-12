@@ -11,7 +11,9 @@ export const Input = ( props ) => {
     let inputElement = null;
     let inputClasses = ['input-element'];
 
-    if (!(isValid) && isTouched && shouldValidate)  {
+    const isInputValid = !(isValid) && isTouched && shouldValidate; 
+    
+    if ( isInputValid ){
         inputClasses.push('invalid');
     }
 

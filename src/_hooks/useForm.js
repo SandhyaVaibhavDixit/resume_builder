@@ -14,8 +14,8 @@ const useForm = (callback, formInputs) => {
     }
   }, [errors, isSubmitting, values, callback]);
 
-  const onSubmit = (event) => {
-    if (event) event.preventDefault();
+  const onSubmit = (e) => {
+    if (e) e.preventDefault();
 
     const errors = validate(values, formInputs);
 
@@ -23,21 +23,21 @@ const useForm = (callback, formInputs) => {
     setIsSubmitting(true);
   };
 
-  const onFileChange = (event) => {
-    event.persist();
+  const onFileChange = (e) => {
+    e.persist();
     
-    const file = event.target.files[0];
-    const acceptedFileExtension = ['png', 'jpg', 'jpeg', 'gif', 'txt', 'doc', 'docx', 'pdf'];
+    const file = e.target.files[0];
+    const acceptedFileExtensions = ['png', 'jpg', 'jpeg', 'gif', 'txt', 'doc', 'docx', 'pdf'];
     
-    if ( file !== undefined && verifyFile(file, acceptedFileExtension)){
+    if ( file !== undefined && verifyFile(file, acceptedFileExtensions)){
         setValues(values => ({ ...values, fileName: file.name, file: file }));
     }
   };
 
-  const onChange = (event) => {
-    event.persist();
+  const onChange = (e) => {
+    e.persist();
     
-    setValues(values => ({ ...values, [event.target.name]: event.target.value }));
+    setValues(values => ({ ...values, [e.target.name]: e.target.value }));
   };
 
   return {

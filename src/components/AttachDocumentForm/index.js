@@ -26,7 +26,7 @@ export const AttachDocumentForm = () => {
 
     const onDeleteHandler = (key) => {
         //Remove by filter.
-        const updatedfileList = state.fileList.filter(item => item.key !== key);
+        const updatedfileList = state.fileList.filter(file => file.key !== key);
         updateState({ fileList: updatedfileList });
     }
 

@@ -29,7 +29,7 @@ export const UserInformationForm = (props) => {
 
     const onDeleteHandler = (key) => {
         //Remove by filter.
-        const updatedDataList = state.dataList.filter(item => item.key !== key);
+        const updatedDataList = state.dataList.filter(data => data.key !== key);
         updateState({ dataList : updatedDataList});
     }
 

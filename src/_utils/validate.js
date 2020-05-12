@@ -12,9 +12,9 @@ export default function validate(values, formInputs) {
       errors[name] = `${label} is required`;
     } 
     else {
-      const result = checkValidity(value, validation);
+      const isValid = checkValidity(value, validation);
 
-      if(result === false){
+      if(isValid === false){
           errors[name] = `${label} is invalid`;
       }
     }
