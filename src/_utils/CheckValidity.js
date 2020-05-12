@@ -1,4 +1,4 @@
-export const CheckValidity = ( value, rules ) => {
+export const checkValidity = ( value, rules ) => {
     let isValid = true;
     if ( !rules ) {
         return true;

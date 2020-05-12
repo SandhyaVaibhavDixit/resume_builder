@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input } from '../../_shared/Input';
 import { PersonalInformationFormInputs } from '../../_shared/FormStructure/PersonalInformationFormInputs';
-import { CheckValidity } from '../../_utils/CheckValidity';
+import { checkValidity } from '../../_utils/checkValidity';
 import { ProfileImage } from './ProfileImage';
 
 import './index.scss';
@@ -15,7 +15,7 @@ export const PersonalInformationForm = () => {
             if (formInput.name === name){
 
                 formInput.value = value;
-                formInput.valid = CheckValidity(
+                formInput.valid = checkValidity(
                     value,
                     formInput.validation
                 );

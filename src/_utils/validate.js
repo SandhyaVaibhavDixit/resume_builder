@@ -1,4 +1,4 @@
-import { CheckValidity } from "./CheckValidity";
+import { checkValidity } from "./checkValidity";
 
 export default function validate(values, formInputs) {
   let errors = {};
@@ -12,7 +12,7 @@ export default function validate(values, formInputs) {
       errors[name] = `${label} is required`;
     } 
     else {
-      const result = CheckValidity(value, validation);
+      const result = checkValidity(value, validation);
 
       if(result === false){
           errors[name] = `${label} is invalid`;
