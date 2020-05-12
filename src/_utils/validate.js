@@ -1,4 +1,4 @@
-import { checkValidity } from "./checkValidity";
+import { checkValidity } from "./CheckValidity";
 
 export default function validate(values, formInputs) {
   let errors = {};

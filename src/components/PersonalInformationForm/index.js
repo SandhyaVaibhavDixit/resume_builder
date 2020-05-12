@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input } from '../../_shared/Input';
 import { PersonalInformationFormInputs } from '../../_shared/FormStructure/PersonalInformationFormInputs';
-import { checkValidity } from '../../_utils/checkValidity';
+import { checkValidity } from '../../_utils/CheckValidity';
 import { ProfileImage } from './ProfileImage';
 
 import './index.scss';
