@@ -2,7 +2,7 @@ import React from "react";
 import './index.scss';
 
 export const Modal = (props) => {    
-    const { show, onClose, children, title }     = props;
+    const { show, onClose, children, title } = props;
     if (!show) {
         return null;
     }    

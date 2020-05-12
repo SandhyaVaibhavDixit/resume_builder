@@ -7,10 +7,11 @@ import { AddForm } from '../../_shared/AddForm';
 
 import './index.scss';
 
-export const UserInformationForm = (props) => {
-    const { formInputs, btnTitle, containerClassName } = props;
+export const OtherInformationForm = (props) => {
+    const { formInputs, buttonTitle, containerClassName } = props;
 
     const classes = ['container', containerClassName];
+    
     const initialState = {
         dataList: [],
         showModal: false,
@@ -43,13 +44,13 @@ export const UserInformationForm = (props) => {
             <br></br>
             <Button
                 onClick ={onShowModalClick}
-                title   ={btnTitle}                
+                title   ={buttonTitle}                
             />
 
             <Modal 
                 show    ={state.showModal} 
                 onClose ={toggleModal}
-                title   ={btnTitle}>
+                title   ={buttonTitle}>
 
                 <AddForm
                     formInputs={formInputs}

@@ -8,7 +8,7 @@ import './index.scss';
 
 export const ProfileImage = () => {
     const initialState = {
-        userProfileImg: null,
+        userProfileImage: null,
         selectedFile: null,
         editor: null
     };
@@ -26,7 +26,7 @@ export const ProfileImage = () => {
     const onImageCrop = () => {
         if ( imageEditor !== null ){
             const url = imageEditor.getImageScaledToCanvas().toDataURL();     
-            setImageData({ userProfileImg : url });
+            setImageData({ userProfileImage : url });
         }
         toggleModal();
     }
@@ -42,8 +42,8 @@ export const ProfileImage = () => {
     }
 
     const renderProfileImage = () => {
-        const profileImage = imageData.userProfileImg ? 
-                                imageData.userProfileImg : 
+        const profileImage = imageData.userProfileImage ? 
+                                imageData.userProfileImage : 
                                 defaultImage;
 
         return(

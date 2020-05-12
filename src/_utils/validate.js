@@ -14,7 +14,7 @@ export default function validate(values, formInputs) {
     else {
       const isValid = checkValidity(value, validation);
 
-      if(isValid === false){
+      if (isValid === false){
           errors[name] = `${label} is invalid`;
       }
     }

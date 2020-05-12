@@ -1,6 +1,6 @@
 import React from 'react';
 import { PersonalInformationForm } from '../../components/PersonalInformationForm';
-import { UserInformationForm } from '../../components/UserInformationForm';
+import { OtherInformationForm } from '../../components/OtherInformationForm';
 import { AttachDocumentForm } from '../../components/AttachDocumentForm';
 
 import { ExperienceFormInputs } from '../../_shared/FormStructure/ExperienceFormInputs';
@@ -20,17 +20,17 @@ export const Form = () => {
         {
             title: 'Educational Qualification',
             subTitle: 'Add all your educational qualifications.',
-            component: <UserInformationForm 
+            component: <OtherInformationForm 
                             formInputs={QualificationFormInputs} 
-                            btnTitle='Add Qualification'
+                            buttonTitle='Add Qualification'
                             containerClassName='qualification-container'/>
         },
         {
             title: 'Experience Details',
             subTitle: 'Add all your previous work experience.',
-            component: <UserInformationForm 
+            component: <OtherInformationForm 
                             formInputs={ExperienceFormInputs} 
-                            btnTitle='Add Experience'
+                            buttonTitle='Add Experience'
                             containerClassName='experience-container'/>
         },
         {
