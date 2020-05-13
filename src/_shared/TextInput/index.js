@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { checkValidity } from '../../_utils/CheckValidity';
 
+import './index.scss';
 const TextInput = (props) => {
 
     const {
@@ -8,7 +9,7 @@ const TextInput = (props) => {
         value: defaultValue,
         label,
         placeholder,
-        validation,
+        validation, 
         onUpdate
     } = props;
 
@@ -20,6 +21,8 @@ const TextInput = (props) => {
 
     const [state, updateState] = useState(initialState);
     const setState = (state) => updateState(prevState => ({...prevState, ...state}));
+
+    const classNameIsInputValid = (!(state.isValid) && state.touched) ? 'invalid' : ''; 
 
     const onFocus = () => {
         setState({ touched: true });
@@ -36,9 +39,10 @@ const TextInput = (props) => {
 
     return (
         <div className='text-input'>
-            <label>{label}</label>
+            <label className='label'>{label}</label>
             <input 
                 placeholder={placeholder}
+                className={`input ${classNameIsInputValid}`}
                 type='text'
                 name={name}
                 value={state.value}
