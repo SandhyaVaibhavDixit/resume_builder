@@ -41,14 +41,14 @@ export const Form = () => {
     ];
 
     const renderSections = (
-            sections.map( section => {
+            sections.map(({title, subTitle, component}) => {
                 return (
                     <Section 
-                        key      ={section.title}
-                        title    ={section.title} 
-                        subTitle ={section.subTitle}>
+                        key      ={title}
+                        title    ={title} 
+                        subTitle ={subTitle}>
 
-                        {section.component}
+                        {component}
                     </Section>
                 )
             })
