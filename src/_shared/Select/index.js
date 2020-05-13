@@ -12,12 +12,12 @@ export const Select = (props) => {
             value     ={value}
             onChange  ={onChange}>
 
-            {options.map(option => (
+            {options.map(({ value, text}) => (
                 <option 
-                    key     ={option.value} 
-                    value   ={option.value}>
+                    key     ={value} 
+                    value   ={value}>
 
-                    {option.text}
+                    {text}
                 </option>
             ))}
 

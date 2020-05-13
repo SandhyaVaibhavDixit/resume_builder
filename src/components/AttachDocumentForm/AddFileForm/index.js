@@ -2,7 +2,7 @@ import React, { Fragment, useCallback } from 'react';
 
 import { Input } from "../../../_shared/Input"; 
 import { Button } from '../../../_shared/Button';
-import { AttachDocumentFormInputs as formInputs } from '../../../_shared/FormStructure/AttachDocumentFormInputs';
+import { AttachDocumentFormInputs as formInputs } from '../../../_utils/FormStructure/AttachDocumentFormInputs';
 
 import useForm from '../../../_hooks/useForm';
 import { generateKey } from '../../../_utils/generateKey';

@@ -3,8 +3,8 @@ import { PersonalInformationForm } from '../../components/PersonalInformationFor
 import { OtherInformationForm } from '../../components/OtherInformationForm';
 import { AttachDocumentForm } from '../../components/AttachDocumentForm';
 
-import { ExperienceFormInputs } from '../../_shared/FormStructure/ExperienceFormInputs';
-import { QualificationFormInputs } from '../../_shared/FormStructure/QualificationFormInputs';
+import { ExperienceFormInputs } from '../../_utils/FormStructure/ExperienceFormInputs';
+import { QualificationFormInputs } from '../../_utils/FormStructure/QualificationFormInputs';
 
 import { Section } from '../../_shared/Section';
 

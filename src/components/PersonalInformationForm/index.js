@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PersonalInformationFormInputs as formInputs } from '../../_shared/FormStructure/PersonalInformationFormInputs';
+import { PersonalInformationFormInputs as formInputs } from '../../_utils/FormStructure/PersonalInformationFormInputs';
 import { ProfileImage } from './ProfileImage';
 
 import './index.scss';
