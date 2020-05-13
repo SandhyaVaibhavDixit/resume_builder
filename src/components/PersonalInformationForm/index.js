@@ -1,64 +1,50 @@
 import React, { useState } from 'react';
-import { Input } from '../../_shared/Input';
-import { PersonalInformationFormInputs } from '../../_shared/FormStructure/PersonalInformationFormInputs';
-import { checkValidity } from '../../_utils/CheckValidity';
+import { PersonalInformationFormInputs as formInputs } from '../../_shared/FormStructure/PersonalInformationFormInputs';
 import { ProfileImage } from './ProfileImage';
 
 import './index.scss';
+import TextInput from '../../_shared/TextInput';
 
 export const PersonalInformationForm = () => {
-    
-    const [formInputs, setformInputs] = useState(PersonalInformationFormInputs);
 
-    const updateFormInputs = (name, value ) =>{
-        const updatedformInputs = formInputs.map( formInput => {
-            if (formInput.name === name){
+    const getInitialState = () => formInputs.reduce((state, { name, value }) => {
+        state[name] = value;
+        return state;
+    }, {});
 
-                formInput.value = value;
-                formInput.valid = checkValidity(
-                    value,
-                    formInput.validation
-                );
+    const [state, updateState] = useState(() => getInitialState());
+    const setState = (state) => updateState(prevState => ({...prevState, state}));
 
-                formInput.touched= true
-            };
-
-            return formInput;
-        });
-        
-        setformInputs(updatedformInputs);
+    const onUpdate = ({target: {name, value}}) => {
+        setState({ [name]: value });
     }
 
-    const onInputChangedHandler = (e) => {
-        const {name, value} = e.target;
-        updateFormInputs(name, value);
+    const renderInputs = () => {
+        return formInputs.map(({ name, label, placeholder, validation }) => (
+            <TextInput
+                key={name}
+                name={name}
+                value={state[name]}
+                label={label}
+                placeholder={placeholder}
+                validation={validation}
+                onUpdate={onUpdate}
+            />
+        ))
     }
 
-    const renderForm = (
+    const renderForm = () => (
         <div className='details-div'>
             <div className='form'>
-            { formInputs.map(formInput => {
-                    return (<Input
-                                key            ={formInput.name}
-                                formInput      ={formInput}       
-                                value          ={formInput.value}
-                                isValid        ={formInput.valid}
-                                isTouched      ={formInput.touched}     
-                                shouldValidate ={formInput.validation}
-                                onChange       ={e => onInputChangedHandler(e)}
-                            />
-                        );
-                    })
-                }
+                {renderInputs()}
             </div>
         </div>
-      );
-      
-    return(
-        <div className='personal-details row'>
-                { renderForm }
+    );
 
-                <ProfileImage />
+    return (
+        <div className='personal-details row'>
+            {renderForm()}
+            <ProfileImage />
         </div>
     );
 }   
