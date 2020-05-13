@@ -37,20 +37,20 @@ export const AttachDocumentForm = () => {
     const getResultView = () => {
         const hasRows = (state.fileList && state.fileList.length !== 0);
         if (hasRows === true) {
-            return (state.fileList.map(file => {
+            return (state.fileList.map(({ key, title, description, url}) => {
                 const renderFileList = () => (
-                    <div className="file-list" key={file.key}>
+                    <div className="file-list" key={key}>
                         <div className="file-title">
-                            <span><b>{file.title}</b></span><br />
-                            <span>{file.description} </span>
+                            <span><b>{title}</b></span><br />
+                            <span>{description} </span>
                         </div>
                         <div className='other-div'>
-                            <div onClick={() => onFileLoadHanlder(file.url)}
+                            <div onClick={() => onFileLoadHanlder(url)}
                                 alt='View File'>View File</div>
                         </div>
                         <div className="other-div">
                             <div title='Delete'
-                                onClick={() => onDeleteHandler(file.key)} >Delete </div>
+                                onClick={() => onDeleteHandler(key)} >Delete </div>
                         </div>
                     </div>
                 )

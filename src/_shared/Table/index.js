@@ -11,10 +11,10 @@ export const Table = (props) => {
         return null;
     };
 
-    const renderHeader = headerRows.map( headerRow => {
-      return <td key={headerRow.name}
-                ><b>{headerRow.label}</b>
-            </td>
+    const renderHeader = headerRows.map( ({ name, label}) => {
+      return <td key={name}>
+                <b>{label}</b>
+             </td>
     });
 
     const renderDeleteAction = (rowKey) => {
@@ -34,8 +34,7 @@ export const Table = (props) => {
         return ( 
                 <tr key={row.key}>
                     {
-                        headerRows.map(headerRow =>{
-                            const { name } = headerRow;
+                        headerRows.map(({ name }) =>{
 
                             return(
                                 <td key={name}> {row[name]} </td>

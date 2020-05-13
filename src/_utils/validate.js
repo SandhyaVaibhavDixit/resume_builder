@@ -3,10 +3,9 @@ import { checkValidity } from "./CheckValidity";
 export default function validate(values, formInputs) {
   let errors = {};
 
-  formInputs.map(formInput => {
+  formInputs.map(({ name, label, validation }) => {
 
-    const { name, label, validation } = formInput;
-    const value = values[formInput.name];
+    const value = values[name];
 
     if (!value) {
       errors[name] = `${label} is required`;
