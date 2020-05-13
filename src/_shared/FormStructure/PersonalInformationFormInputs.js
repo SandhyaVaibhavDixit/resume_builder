@@ -10,9 +10,7 @@ export const PersonalInformationFormInputs = [
         value: '',
         validation: {
           required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'location',

@@ -20,13 +20,13 @@ export const PersonalInformationForm = () => {
     }
 
     const renderInputs = () => {
-        return formInputs.map(({ name, label, placeholder, validation }) => (
+        return formInputs.map(({ name, label, config, validation }) => (
             <TextInput
                 key={name}
                 name={name}
                 value={state[name]}
                 label={label}
-                placeholder={placeholder}
+                placeholder={config.placeholder}
                 validation={validation}
                 onUpdate={onUpdate}
             />
