@@ -1,73 +1,56 @@
 import React from 'react';
 import { Select } from '../Select';
-import { Textarea } from '../Textarea';
+import { TextInput } from '../TextInput';
+import { FileUpload } from '../FileUpload';
+import { InputDate } from '../InputDate';
 import './index.scss';
 
 export const Input = ( props ) => {
-    const { isValid, isTouched, shouldValidate, value, onChange, onFileChange } = props;
-    const { name, label, elementType, config } = props.formInput;
-    const { type, placeHolder } = config 
-
-    let inputElement = null;
-    let inputClasses = ['input-element'];
-
-    const isInputValid = !(isValid) && isTouched && shouldValidate; 
-    
-    if ( isInputValid ){
-        inputClasses.push('invalid');
-    }
+    const { name, label, elementType, placeholder, value, validation, options, onChange, onFileChange } = props;
 
     switch ( elementType ) { 
         case ( 'textarea' ):
-            inputClasses.push('textarea'); 
-            inputElement = <Textarea 
-                                name    ={name} 
-                                value   ={value}
-                                classes ={inputClasses}
-                                config  ={config}
-                                onChange ={onChange}
-                            />  
-            break;
+        return <TextInput
+                    key={name}
+                    name={name}
+                    value={value}
+                    label={label}
+                    placeholder={placeholder}
+                    validation={validation}
+                    onUpdate={onChange}
+                    isMultiline= {true}
+                />
         case ( 'select' ):
-            inputElement = <Select 
-                                name    ={name} 
-                                value   ={value}
-                                classes = {inputClasses}
-                                config  = {config}
-                                onChange ={onChange}
-                            />  
-            break;
+            return <Select 
+                        name    ={name} 
+                        value   ={value}
+                        label   ={label}
+                        options ={options}
+                        onUpdate ={onChange}
+                    />  
         case ( 'file' ): 
-            inputElement = <div className='file-upload'>
-                            <br></br>
-                            <label className='label-upload' title='Upload'>
-                                <input 
-                                    type ='file'
-                                    hidden
-                                    onChange ={onFileChange}
-                                />
-                                    Select File
-                                </label>
-                                <span className='span-file-name'>{value}</span>
-                        </div>
-            break;
+            return <FileUpload
+                        value ={value}
+                        onUpdate={onFileChange}
+                    />
+        case ( 'date' ):
+            return <InputDate
+                        name ={name}
+                        value ={value}
+                        label ={label}
+                        onUpdate ={onChange}
+                    />
         case ( 'input' ):
         default:
-            inputElement = <input
-                                key         ={name}
-                                name        ={name}
-                                className   ={inputClasses.join(' ')}
-                                type        ={type}
-                                placeholder ={placeHolder}
-                                value       ={value}
-                                onChange    ={onChange} 
-                            />
+            return  <TextInput
+                        key={name}
+                        name={name}
+                        value={value}
+                        label={label}
+                        placeholder={placeholder}
+                        validation={validation}
+                        onUpdate={onChange}
+                        isMultiline= {false}
+                    />
         }
-
-    return (
-        <div className='input'>
-            <label className={'label'}>{label}</label>
-            {inputElement}
-        </div>
-    );
 }

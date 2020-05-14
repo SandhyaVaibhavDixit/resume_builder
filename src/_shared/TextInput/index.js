@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import { checkValidity } from '../../_utils/CheckValidity';
 
 import './index.scss';
-const TextInput = (props) => {
+export const TextInput = (props) => {
 
     const {
         name,
         value: defaultValue,
         label,
         placeholder,
-        validation, 
+        validation,
+        isMultiline, 
         onUpdate
     } = props;
 
@@ -28,8 +29,8 @@ const TextInput = (props) => {
         setState({ touched: true });
     }
 
-    const onBlur = (event) => {
-        onUpdate(event)
+    const onBlur = (e) => {
+        onUpdate(e)
     }
 
     const onChange = ({target: {value}}) => {
@@ -37,21 +38,38 @@ const TextInput = (props) => {
         setState({ value, isValid });
     }
 
+    const renderTextElment = () => {
+        if (isMultiline === false) {
+            return  <input 
+                        placeholder ={placeholder}
+                        className   ={`input ${classNameIsInputValid}`}
+                        type        ='text'
+                        name        ={name}
+                        value       ={state.value}
+                        onFocus     ={onFocus}
+                        onBlur      ={onBlur}
+                        onChange    ={onChange}
+                    />
+        }
+        else {
+            return <textarea
+                        placeholder ={placeholder}
+                        rows        ={5}
+                        cols        ={50}
+                        name        ={name}
+                        className   ={`textarea ${classNameIsInputValid}`}
+                        value       ={state.value}
+                        onFocus     ={onFocus}
+                        onBlur      ={onBlur}
+                        onChange    ={onChange}
+                    />
+        }
+    }
+
     return (
         <div className='text-input'>
             <label className='label'>{label}</label>
-            <input 
-                placeholder={placeholder}
-                className={`input ${classNameIsInputValid}`}
-                type='text'
-                name={name}
-                value={state.value}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onChange={onChange}
-            />
+            { renderTextElment() }    
         </div>
     )
 }
-
-export default TextInput;

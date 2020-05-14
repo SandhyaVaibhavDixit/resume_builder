@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import './index.scss';
 
 export const Select = (props) => {
-    const {name, value, classes, config, onChange} = props;
-    const { options } = config;
+    const {name, label, value: defaultValue, options, onUpdate} = props;
+    
+    const initialState = {
+        value: defaultValue
+    }
+
+    const [state, updateState] = useState(initialState);
+    const setState = (state) => updateState(prevState => ({...prevState, ...state}));
+
+    const onBlur = (e) => {
+        onUpdate(e)
+    }
+
+    const onChange = ({target: {value}}) => {
+        setState({ value });
+    }
 
     const renderSelect = () => (
         <select
-            key       ={name}
-            name      ={name}
-            className ={classes.join(' ')}
-            value     ={value}
-            onChange  ={onChange}>
+            key         ={name}
+            name        ={name}
+            className   ='select-element'
+            value       ={state.value}
+            onBlur      ={onBlur}
+            onChange    ={onChange}>
 
             {options.map(({ value, text}) => (
                 <option 
@@ -25,6 +42,9 @@ export const Select = (props) => {
     );
 
     return(
-        renderSelect()
+        <div className='select'>
+            <label className='label'>{label}</label>
+            { renderSelect() }
+        </div>
     );
 }

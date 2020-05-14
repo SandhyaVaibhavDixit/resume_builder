@@ -30,22 +30,27 @@ export const AddFileForm = ({ fileList, updateParentState, toggleModal }) => {
         onFileChange,
         onSubmit,
     } = useForm(onFormSubmit, formInputs);
-
+ 
     return (
         <Fragment>
             <form onSubmit={onSubmit} className='form'>
                 {
-                    formInputs.map(formInput => {
+                    formInputs.map(({ name, label, elementType, config }) => {
                         return (
-                            <div key={formInput.name}>
+                            <div key={name}>
                                 <Input
-                                    formInput    ={formInput}
-                                    onChange     ={onChange}
+                                    key={name}
+                                    name={name}
+                                    label={label}
+                                    elementType={elementType}
+                                    placeholder={config.placeholder}
+                                    options={config.options}
+                                    onChange={onChange}
                                     onFileChange ={onFileChange}
-                                    value        ={values[formInput.name] || ''}
+                                    value        ={values[name] || ''}
                                 />
-                                {errors[formInput.name] && (
-                                    <p className="is-danger">{errors[formInput.name]}</p>
+                                {errors[name] && (
+                                    <p className="is-danger">{errors[name]}</p>
                                 )}
                             </div>
                         )

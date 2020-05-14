@@ -64,7 +64,7 @@ export const AttachDocumentForm = () => {
 
     const renderModal = () => (
         <Modal
-            show={state.showModal}
+            show={state.showModal} 
             onClose={toggleModal}
             title='Add files'
             >

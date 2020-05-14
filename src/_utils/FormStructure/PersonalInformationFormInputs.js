@@ -23,9 +23,7 @@ export const PersonalInformationFormInputs = [
         value: '',
         validation: {
           required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'zipcode',
@@ -41,9 +39,7 @@ export const PersonalInformationFormInputs = [
           minLength: 5,
           maxLength: 5,
           isNumeric: true
-        },
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'nationality',
@@ -56,9 +52,7 @@ export const PersonalInformationFormInputs = [
         value: '',
         validation: {
           required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'gender',
@@ -73,12 +67,11 @@ export const PersonalInformationFormInputs = [
           },
           value: 'Male',
           validation: {},
-          valid: true
     },
     {
         name: 'dateOfBirth',
         label: 'Date of Birth',
-        elementType: 'input',
+        elementType: 'date',
         config: {
             type: 'date',
             placeholder: 'mm / dd / yyyy'
@@ -88,8 +81,6 @@ export const PersonalInformationFormInputs = [
           required: true,
           isDate: true
         }, 
-        valid: false,
-        touched: false
     },
     {
         name: 'email',
@@ -103,9 +94,7 @@ export const PersonalInformationFormInputs = [
         validation: {
           required: true,
           isEmail: true
-        },
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'mobile',
@@ -121,9 +110,7 @@ export const PersonalInformationFormInputs = [
           minLength: 10,
           maxLength: 20,
           isNumeric: true
-        },
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'permanentAddress',
@@ -135,9 +122,7 @@ export const PersonalInformationFormInputs = [
         value: '',
         validation: {
           required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     },
     {
         name: 'localAddress',
@@ -149,8 +134,6 @@ export const PersonalInformationFormInputs = [
         value: '',
         validation: {
             required: true
-        }, 
-        valid: false,
-        touched: false
+        }
     }
 ]

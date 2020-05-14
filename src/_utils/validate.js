@@ -6,7 +6,6 @@ export default function validate(values, formInputs) {
   formInputs.map(({ name, label, validation }) => {
 
     const value = values[name];
-
     if (!value) {
       errors[name] = `${label} is required`;
     } 

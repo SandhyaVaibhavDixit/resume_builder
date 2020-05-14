@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback } from 'react';
 
-import { Input } from "../Input"; 
+import { Input } from "../Input";
 import { Button } from '../Button';
 
 import useForm from '../../_hooks/useForm';
@@ -14,7 +14,7 @@ export const AddForm = ({formInputs, dataList, updateParentState, toggleModal })
             ...dataList,
             {   
                 key: generateKey(1, 100),
-                ...values
+                ...values 
             }
         ];
 
@@ -33,33 +33,39 @@ export const AddForm = ({formInputs, dataList, updateParentState, toggleModal })
     const renderForm = () => (
         <Fragment>
             <form onSubmit={onSubmit} className='form'>
-                {
-                    formInputs.map(formInput => {
-                        const formElement = (
-                            <div key={formInput.name} className='form-div'>
-                                <Input
-                                    formInput ={formInput}
-                                    onChange  ={onChange}
-                                    value     ={values[formInput.name] || ''}
-                                />
-                                {errors[formInput.name] && (
-                                    <p className="is-danger">{errors[formInput.name]}</p>
-                                )}
-                            </div>
-                        );
+            {                
+                formInputs.map(({ name, label, elementType, config, validation })  => {
+                    const formElement = (
+                        <div key={name} className='form-div'>
+                            <Input
+                                key={name}
+                                name={name}
+                                value={values[name] || ''}
+                                label={label}
+                                elementType={elementType}
+                                options={config.options}
+                                placeholder={config.placeholder}
+                                validation={validation}
+                                onChange={onChange}
+                            />
+                            {errors[name] && (
+                                <p className="is-danger">{errors[name]}</p>
+                            )}
+                        </div>
+                    );
 
-                        return (
-                            formElement
-                        )
-                    })
-                }
-                <div className='form-bottom'>
-                    <Button
-                        title='Add'
-                        type='Submit'
-                    />
-                </div>
-            </form>
+                    return (
+                        formElement
+                    )
+                })
+            }
+            <div className='form-bottom'>
+                <Button
+                    title='Add'
+                    type='Submit'
+                />
+            </div>
+        </form>
         </Fragment>
     )
     

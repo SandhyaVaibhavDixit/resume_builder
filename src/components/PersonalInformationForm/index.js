@@ -3,7 +3,7 @@ import { PersonalInformationFormInputs as formInputs } from '../../_utils/FormSt
 import { ProfileImage } from './ProfileImage';
 
 import './index.scss';
-import TextInput from '../../_shared/TextInput';
+import { Input } from '../../_shared/Input';
 
 export const PersonalInformationForm = () => {
 
@@ -20,15 +20,17 @@ export const PersonalInformationForm = () => {
     }
 
     const renderInputs = () => {
-        return formInputs.map(({ name, label, config, validation }) => (
-            <TextInput
+        return formInputs.map(({ name, label, elementType, config, validation }) => (
+            <Input
                 key={name}
                 name={name}
                 value={state[name]}
                 label={label}
+                elementType={elementType}
                 placeholder={config.placeholder}
+                options={config.options}
                 validation={validation}
-                onUpdate={onUpdate}
+                onChange={onUpdate}
             />
         ))
     }
