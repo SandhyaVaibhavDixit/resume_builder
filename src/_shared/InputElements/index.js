@@ -5,7 +5,7 @@ import { FileUpload } from '../FileUpload';
 import { InputDate } from '../InputDate';
 import './index.scss';
 
-export const Input = ( props ) => {
+export const InputElements = ( props ) => {
     const { name, label, elementType, placeholder, value, validation, options, onChange, onFileChange } = props;
 
     switch ( elementType ) { 

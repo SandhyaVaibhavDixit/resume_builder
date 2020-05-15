@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback } from 'react';
 
-import { Input } from "../Input";
+import { InputElements } from "../InputElements";
 import { Button } from '../Button';
 
 import useForm from '../../_hooks/useForm';
@@ -37,7 +37,7 @@ export const AddForm = ({formInputs, dataList, updateParentState, toggleModal })
                 formInputs.map(({ name, label, elementType, config, validation })  => {
                     const formElement = (
                         <div key={name} className='form-div'>
-                            <Input
+                            <InputElements
                                 key={name}
                                 name={name}
                                 value={values[name] || ''}

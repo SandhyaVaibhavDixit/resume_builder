@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback } from 'react';
 
-import { Input } from "../../../_shared/Input"; 
+import { InputElements } from "../../../_shared/InputElements"; 
 import { Button } from '../../../_shared/Button';
 import { AttachDocumentFormInputs as formInputs } from '../../../_utils/FormStructure/AttachDocumentFormInputs';
 
@@ -38,7 +38,7 @@ export const AddFileForm = ({ fileList, updateParentState, toggleModal }) => {
                     formInputs.map(({ name, label, elementType, config }) => {
                         return (
                             <div key={name}>
-                                <Input
+                                <InputElements
                                     key={name}
                                     name={name}
                                     label={label}

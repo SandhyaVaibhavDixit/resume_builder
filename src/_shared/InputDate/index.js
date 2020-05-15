@@ -28,8 +28,6 @@ export const InputDate = (props) =>{
     }
 
     const renderDateElment = () => {
-        //const selectedValue = state.value ? moment(state.value, 'DD-MM-YYYY') : moment();
-
         return (
             <DatePicker
                 selected    ={state.value}
